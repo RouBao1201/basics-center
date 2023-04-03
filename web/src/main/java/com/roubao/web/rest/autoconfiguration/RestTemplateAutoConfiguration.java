@@ -11,7 +11,13 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
+
+import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * RestTemplate自动装配
@@ -38,7 +44,18 @@ public class RestTemplateAutoConfiguration {
         log.info("RestTemplateAutoConfiguration ==> Start custom autoConfiguration [RestTemplate] bean.");
         log.info("RestTemplateAutoConfiguration ==> OKHttpProperties: {}.", okHttpProperties);
         ClientHttpRequestFactory factory = httpRequestFactory();
-        return new RestTemplate(factory);
+        RestTemplate restTemplate = new RestTemplate(factory);
+
+        // 解决中文乱码问题
+        List<HttpMessageConverter<?>> messageConverterList = restTemplate.getMessageConverters();
+        for (HttpMessageConverter<?> converter : messageConverterList) {
+            // 原有的String是ISO-8859-1编码 ，设置为UTF-8
+            if (converter instanceof StringHttpMessageConverter) {
+                ((StringHttpMessageConverter) converter).setDefaultCharset(StandardCharsets.UTF_8);
+                break;
+            }
+        }
+        return restTemplate;
     }
 
     /**
