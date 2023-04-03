@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-    com.roubao.web.rest.autoconfiguration.RestAdapterAutoConfiguration
+    com.roubao.web.rest.autoconfiguration.RestAdapterAutoConfiguration,\
+  com.roubao.web.rest.autoconfiguration.RestTemplateAutoConfiguration
