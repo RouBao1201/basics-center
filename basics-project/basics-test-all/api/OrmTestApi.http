@@ -1,0 +1,20 @@
+###
+POST http://localhost:8093/jdbcTest/insertDict
+Content-Type: application/json
+
+{
+  "dictId": "123",
+  "dictName": "一二三"
+}
+
+
+### 批量插入成功: 100000, 消耗时间: 10899ms xml中for循环
+### 批量插入成功: 100000, 消耗时间: 6440ms JdbcAdapter
+POST http://localhost:8093/jdbcTest/batchInsertDict
+Content-Type: application/json
+
+{
+  "batchNum": 100000,
+  "mode": 2,
+  "submitNum": 10000
+}

@@ -1,0 +1,8 @@
+## redisAdaptor测试
+POST http://127.0.0.1:8093/redisTest/set
+Content-Type: application/json
+
+{
+  "key": "DaRouBao",
+  "value": "大肉包"
+}

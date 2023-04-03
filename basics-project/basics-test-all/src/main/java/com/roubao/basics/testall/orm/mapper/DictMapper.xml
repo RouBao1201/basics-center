@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.roubao.basics.testall.orm.mapper.DictMapper">
+
+    <insert id="insertDict" parameterType="com.roubao.basics.testall.orm.dto.DictInsRequestDTO">
+        INSERT INTO RB_SYS_DICT (DICT_ID, DICT_NAME)
+        VALUES (#{dictDto.dictId}, #{dictDto.dictName})
+    </insert>
+
+    <insert id="batchInsertDict" parameterType="com.roubao.basics.testall.orm.dto.DictInsRequestDTO">
+        insert into RB_SYS_DICT (DICT_ID, DICT_NAME)
+        values
+        <foreach collection="dictDtoList" index="index" item="item" separator=",">
+            ( #{item.dictId}, #{item.dictName} )
+        </foreach>
+    </insert>
+</mapper>

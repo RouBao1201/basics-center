@@ -16,13 +16,13 @@ import com.roubao.nosql.redis.bean.RedisAdapter;
  **/
 @Slf4j
 @Configuration
-public class RedisAdaptorAutoConfiguration {
+public class RedisAdapterAutoConfiguration {
 
-    @Bean("redisAdaptor")
+    @Bean("redisAdapter")
     @ConditionalOnBean(RedisTemplate.class)
     @ConditionalOnMissingBean(RedisAdapter.class)
     public RedisAdapter redisAdaptor(RedisTemplate redisTemplate) {
-        log.info("RedisAdaptorAutoConfiguration ==> Start custom autoConfiguration [RedisAdapter].");
+        log.info("RedisAdapterAutoConfiguration ==> Start custom autoConfiguration [RedisAdapter].");
         return new RedisAdapter(redisTemplate);
     }
 }
