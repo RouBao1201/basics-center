@@ -1,0 +1,34 @@
+server:
+  port: 8090
+spring:
+  application:
+    name: roubao-basics-test-all
+  datasource:
+    druid:
+      username: root
+      password: root
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://localhost:3306/roubao
+      initial-size: 10
+      max-active: 50
+      min-idle: 10
+      max-wait: 5000
+      query-timeout: 100
+      transaction-query-timeout: 100
+      phy-timeout-millis: 10000
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    database: 0
+    timeout: 1800000
+    lettuce:
+      pool:
+        max-wait: -1
+        max-idle: 5
+        min-idle: 0
+        max-active: 20
+mybatis-plus:
+  configuration:
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

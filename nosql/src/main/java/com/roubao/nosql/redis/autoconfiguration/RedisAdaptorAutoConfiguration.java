@@ -22,7 +22,7 @@ public class RedisAdaptorAutoConfiguration {
     @ConditionalOnBean(RedisTemplate.class)
     @ConditionalOnMissingBean(RedisAdapter.class)
     public RedisAdapter redisAdaptor(RedisTemplate redisTemplate) {
-        log.info("RedisAdaptorAutoConfiguration ==> Start autoConfiguration RedisAdapter.");
+        log.info("RedisAdaptorAutoConfiguration ==> Start custom autoConfiguration [RedisAdapter].");
         return new RedisAdapter(redisTemplate);
     }
 }

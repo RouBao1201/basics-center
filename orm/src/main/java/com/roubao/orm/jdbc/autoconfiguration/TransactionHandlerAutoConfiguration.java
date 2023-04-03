@@ -24,7 +24,7 @@ public class TransactionHandlerAutoConfiguration {
     @ConditionalOnBean(DataSourceTransactionManager.class)
     @ConditionalOnMissingBean(TransactionHandler.class)
     public TransactionHandler transactionUtils(DataSourceTransactionManager dataSourceTransaction) {
-        log.info("TransactionHandlerAutoConfiguration ==> Start autoConfiguration TransactionHandler.");
+        log.info("TransactionHandlerAutoConfiguration ==> Start custom autoConfiguration [TransactionHandler].");
         return new TransactionHandler(dataSourceTransaction);
     }
 }

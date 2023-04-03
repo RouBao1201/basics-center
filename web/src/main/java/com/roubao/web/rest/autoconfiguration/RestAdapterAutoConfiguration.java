@@ -22,7 +22,7 @@ public class RestAdapterAutoConfiguration {
     @ConditionalOnBean(RestTemplate.class)
     @ConditionalOnMissingBean(RestAdapter.class)
     public RestAdapter restAdapter(RestTemplate restTemplate) {
-        log.info("RestAdapterAutoConfiguration ==> Start autoConfiguration RestAdapter.");
+        log.info("RestAdapterAutoConfiguration ==> Start custom autoConfiguration [RestAdapter].");
         return new RestAdapter(restTemplate);
     }
 }

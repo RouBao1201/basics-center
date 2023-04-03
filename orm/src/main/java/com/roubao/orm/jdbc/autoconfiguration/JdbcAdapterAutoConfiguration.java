@@ -24,7 +24,7 @@ public class JdbcAdapterAutoConfiguration {
     @ConditionalOnBean(JdbcTemplate.class)
     @ConditionalOnMissingBean(JdbcAdapter.class)
     public JdbcAdapter jdbcAdaptor(JdbcTemplate jdbcTemplate) {
-        log.info("JdbcAdapterAutoConfiguration ==> Start autoConfiguration JdbcAdapter.");
+        log.info("JdbcAdapterAutoConfiguration ==> Start custom autoConfiguration [JdbcAdapter].");
         return new JdbcAdapter(jdbcTemplate);
     }
 }

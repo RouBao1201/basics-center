@@ -57,7 +57,7 @@ public class RedisTemplateAutoConfiguration {
     @Bean("redisTemplate")
     @ConditionalOnMissingBean(RedisTemplate.class)
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        log.info("RedisTemplateAutoConfiguration ==> Start autoConfiguration RedisTemplate.");
+        log.info("RedisTemplateAutoConfiguration ==> Start custom autoConfiguration [RedisTemplate].");
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
         // String的序列化方式

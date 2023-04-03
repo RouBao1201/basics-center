@@ -13,6 +13,7 @@
         <module>basics-web</module>
         <module>basics-orm</module>
         <module>basics-nosql</module>
+        <module>basics-test-all</module>
     </modules>
 
     <properties>
