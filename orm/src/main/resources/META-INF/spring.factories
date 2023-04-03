@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    com.roubao.orm.jdbc.autoconfiguration.JdbcAdapterAutoConfiguration,\
+  com.roubao.orm.jdbc.autoconfiguration.TransactionHandlerAutoConfiguration

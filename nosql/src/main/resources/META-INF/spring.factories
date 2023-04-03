@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+  com.roubao.nosql.redis.autoconfiguration.RedisTemplateAutoConfiguration,\
+com.roubao.nosql.redis.autoconfiguration.RedisAdaptorAutoConfiguration
