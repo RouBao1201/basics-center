@@ -1,5 +1,6 @@
 package com.roubao.nosql.redis.autoconfiguration;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,6 +16,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @copyright 2022-2099 SongYanBin All Rights Reserved.
  * @since 2022/11/24
  */
+@Slf4j
 @Configuration
 public class RedisTemplateAutoConfiguration {
 
@@ -55,6 +57,7 @@ public class RedisTemplateAutoConfiguration {
     @Bean("redisTemplate")
     @ConditionalOnMissingBean(RedisTemplate.class)
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
+        log.info("RedisTemplateAutoConfiguration ==> Start autoConfiguration RedisTemplate.");
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
         // String的序列化方式
