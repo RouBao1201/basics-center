@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
@@ -17,12 +18,13 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
  * @since 2022/11/24
  */
 @Slf4j
+@Order(1)
 @Configuration
 public class RedisTemplateAutoConfiguration {
 
     /**
      * redis序列化配置（Jackson2JsonRedisSerializer）
-     * 
+     *
      * @param redisConnectionFactory redisConnectionFactory
      * @return RedisTemplate
      */
@@ -50,14 +52,14 @@ public class RedisTemplateAutoConfiguration {
 
     /**
      * redis序列化配置（GenericJackson2JsonRedisSerializer）
-     * 
+     *
      * @param redisConnectionFactory redisConnectionFactory
      * @return RedisTemplate
      */
     @Bean("redisTemplate")
     @ConditionalOnMissingBean(RedisTemplate.class)
     public RedisTemplate<String, Object> redisTemplate(RedisConnectionFactory redisConnectionFactory) {
-        log.info("RedisTemplateAutoConfiguration ==> Start custom autoConfiguration [RedisTemplate].");
+        log.info("RedisTemplateAutoConfiguration ==> Start custom autoConfiguration [RedisTemplate] bean.");
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         template.setConnectionFactory(redisConnectionFactory);
         // String的序列化方式
