@@ -1,5 +1,6 @@
 package com.roubao.orm.jdbc.autoconfiguration;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import com.roubao.orm.jdbc.bean.TransactionHandler;
 public class TransactionHandlerAutoConfiguration {
 
     @Bean
+    @ConditionalOnBean(DataSourceTransactionManager.class)
     @ConditionalOnMissingBean(TransactionHandler.class)
     public TransactionHandler transactionUtils(DataSourceTransactionManager dataSourceTransaction) {
         return new TransactionHandler(dataSourceTransaction);

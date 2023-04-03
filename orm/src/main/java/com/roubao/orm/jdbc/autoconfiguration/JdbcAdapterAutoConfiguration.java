@@ -1,5 +1,6 @@
 package com.roubao.orm.jdbc.autoconfiguration;
 
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,7 @@ import com.roubao.orm.jdbc.bean.JdbcAdapter;
 public class JdbcAdapterAutoConfiguration {
 
     @Bean
+    @ConditionalOnBean(JdbcTemplate.class)
     @ConditionalOnMissingBean(JdbcAdapter.class)
     public JdbcAdapter jdbcAdaptor(JdbcTemplate jdbcTemplate) {
         return new JdbcAdapter(jdbcTemplate);
