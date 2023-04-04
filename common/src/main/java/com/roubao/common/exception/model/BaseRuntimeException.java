@@ -7,21 +7,21 @@ package com.roubao.common.exception.model;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/30
  **/
-public class BaseRunException extends RuntimeException {
+public class BaseRuntimeException extends RuntimeException {
     private static final long serialVersionUID = -5157799854488729117L;
 
     public static final Integer BUSINESS_ERROR = 500;
 
     private Integer code;
 
-    public BaseRunException() {
+    public BaseRuntimeException() {
     }
 
-    public BaseRunException(Integer code) {
+    public BaseRuntimeException(Integer code) {
         this.code = code;
     }
 
-    public BaseRunException(Integer code, String message) {
+    public BaseRuntimeException(Integer code, String message) {
         super(message);
         this.code = code;
     }

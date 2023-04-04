@@ -16,7 +16,7 @@ public class ExceptionHandler {
      * 抛出业务异常
      *
      * @param message 异常信息
-     * @return BaseRunException
+     * @return BaseRuntimeException
      */
     public static void publishServiceException(String message) {
         throw new ServiceException(ExceptionCode.SERVICE_EXCEPTION.getCode(), message);
@@ -37,7 +37,7 @@ public class ExceptionHandler {
      *
      * @param code    异常编码
      * @param message 异常信息
-     * @return BaseRunException
+     * @return BaseRuntimeException
      */
     public static void publishServiceException(Integer code, String message) {
         throw new ServiceException(code, message);

@@ -2,7 +2,7 @@ package com.roubao.web.webconfig.exception.config;
 
 import com.roubao.common.exception.enums.ExceptionCode;
 import com.roubao.common.exception.model.BaseException;
-import com.roubao.common.exception.model.BaseRunException;
+import com.roubao.common.exception.model.BaseRuntimeException;
 import com.roubao.common.exception.model.ServiceException;
 import com.roubao.web.response.dto.RespResult;
 import com.roubao.web.response.utils.RespHelper;
@@ -182,9 +182,9 @@ public class GlobalExceptionHandler {
         return RespHelper.fail(ExceptionCode.SERVICE_EXCEPTION.getCode(), "基础异常: " + ex.getMessage());
     }
 
-    @ExceptionHandler(BaseRunException.class)
-    public RespResult<Object> baseExceptionHandler(BaseRunException ex) {
-        log.error("GlobalExceptionHandler ==> BaseRunException: {}", ex.getMessage());
+    @ExceptionHandler(BaseRuntimeException.class)
+    public RespResult<Object> baseExceptionHandler(BaseRuntimeException ex) {
+        log.error("GlobalExceptionHandler ==> BaseRuntimeException: {}", ex.getMessage());
         return RespHelper.fail(ExceptionCode.SERVICE_EXCEPTION.getCode(), "基础运行异常: " + ex.getMessage());
     }
 

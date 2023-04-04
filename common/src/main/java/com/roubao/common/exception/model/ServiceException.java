@@ -7,7 +7,7 @@ package com.roubao.common.exception.model;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/30
  **/
-public class ServiceException extends BaseRunException {
+public class ServiceException extends BaseRuntimeException {
     private static final long serialVersionUID = 1161570436154544379L;
 
     public ServiceException() {
