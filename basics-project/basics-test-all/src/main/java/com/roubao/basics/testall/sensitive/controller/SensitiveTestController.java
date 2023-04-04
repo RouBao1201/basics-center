@@ -1,6 +1,7 @@
 package com.roubao.basics.testall.sensitive.controller;
 
 import com.roubao.basics.testall.sensitive.dto.UserInfoDTO;
+import com.roubao.common.exception.handler.ExceptionHandler;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ public class SensitiveTestController {
 
     @GetMapping(value = "/queryUserInfo")
     public UserInfoDTO queryUserInfo() {
+        ExceptionHandler.publishServiceException("手动抛出异常测试");
         log.info("SensitiveTestController ==> /queryUserInfo ... ");
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         userInfoDTO.setUsername("RouBao");

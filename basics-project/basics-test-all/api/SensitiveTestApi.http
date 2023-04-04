@@ -1,2 +1,2 @@
 ## 测试脱敏
-GET http://127.0.0.1:8093/sensitiveTest/queryUserInfo
+GET http://127.0.0.1:8090/sensitiveTest/queryUserInfo

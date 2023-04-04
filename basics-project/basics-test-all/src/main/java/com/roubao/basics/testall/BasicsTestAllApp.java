@@ -1,5 +1,6 @@
 package com.roubao.basics.testall;
 
+import com.roubao.web.response.annotations.EnableGlobalExceptionHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -9,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @since 2023/4/3
  **/
 @SpringBootApplication
+@EnableGlobalExceptionHandler
 public class BasicsTestAllApp {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(BasicsTestAllApp.class);
