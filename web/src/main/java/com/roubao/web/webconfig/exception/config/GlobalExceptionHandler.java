@@ -34,7 +34,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NullPointerException.class)
     public RespResult<Object> nullPointerExceptionHandler(NullPointerException ex) {
-        log.error("GlobalExceptionHandler ==> NullPointerException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> NullPointerException: {}", ex.getMessage(), ex);
         return RespHelper.fail("空指针异常: " + ex.getMessage());
     }
 
@@ -43,7 +43,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ClassCastException.class)
     public RespResult<Object> classCastExceptionHandler(ClassCastException ex) {
-        log.error("GlobalExceptionHandler ==> ClassCastException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> ClassCastException: {}", ex.getMessage(), ex);
         return RespHelper.fail("类型转换异常: " + ex.getMessage());
     }
 
@@ -52,7 +52,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(FileNotFoundException.class)
     public RespResult<Object> fileNotFoundExceptionHandler(FileNotFoundException ex) {
-        log.error("GlobalExceptionHandler ==> FileNotFoundException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> FileNotFoundException: {}", ex.getMessage(), ex);
         return RespHelper.fail("文件未找到异常: " + ex.getMessage());
     }
 
@@ -61,7 +61,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NumberFormatException.class)
     public RespResult<Object> numberFormatExceptionHandler(NumberFormatException ex) {
-        log.error("GlobalExceptionHandler ==> NumberFormatException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> NumberFormatException: {}", ex.getMessage(), ex);
         return RespHelper.fail("数字格式异常: " + ex.getMessage());
     }
 
@@ -70,7 +70,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(SecurityException.class)
     public RespResult<Object> securityExceptionHandler(SecurityException ex) {
-        log.error("GlobalExceptionHandler ==> SecurityException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> SecurityException: {}", ex.getMessage(), ex);
         return RespHelper.fail("安全异常: " + ex.getMessage());
     }
 
@@ -79,7 +79,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(SQLException.class)
     public RespResult<Object> sqlExceptionHandler(SQLException ex) {
-        log.error("GlobalExceptionHandler ==> SQLException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> SQLException: {}", ex.getMessage(), ex);
         return RespHelper.fail("SQL异常: " + ex.getMessage());
     }
 
@@ -88,7 +88,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(TypeNotPresentException.class)
     public RespResult<Object> typeNotPresentExceptionHandler(TypeNotPresentException ex) {
-        log.error("GlobalExceptionHandler ==> TypeNotPresentException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> TypeNotPresentException: {}", ex.getMessage(), ex);
         return RespHelper.fail("类型不存在异常: " + ex.getMessage());
     }
 
@@ -97,7 +97,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(IOException.class)
     public RespResult<Object> ioExceptionHandler(IOException ex) {
-        log.error("GlobalExceptionHandler ==> IOException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> IOException: {}", ex.getMessage(), ex);
         return RespHelper.fail("IO异常: " + ex.getMessage());
     }
 
@@ -106,7 +106,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoSuchMethodException.class)
     public RespResult<Object> noSuchMethodExceptionHandler(NoSuchMethodException ex) {
-        log.error("GlobalExceptionHandler ==> NoSuchMethodException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> NoSuchMethodException: {}", ex.getMessage(), ex);
         return RespHelper.fail("未知方法异常: " + ex.getMessage());
     }
 
@@ -115,7 +115,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(IndexOutOfBoundsException.class)
     public RespResult<Object> indexOutOfBoundsExceptionHandler(IndexOutOfBoundsException ex) {
-        log.error("GlobalExceptionHandler ==> IndexOutOfBoundsException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> IndexOutOfBoundsException: {}", ex.getMessage(), ex);
         return RespHelper.fail("数组越界异常: " + ex.getMessage());
     }
 
@@ -124,7 +124,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(NoSuchBeanDefinitionException.class)
     public RespResult<Object> noSuchBeanDefinitionExceptionHandler(NoSuchBeanDefinitionException ex) {
-        log.error("GlobalExceptionHandler ==> NoSuchBeanDefinitionException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> NoSuchBeanDefinitionException: {}", ex.getMessage(), ex);
         return RespHelper.fail("无法注入bean异常: " + ex.getMessage());
     }
 
@@ -133,7 +133,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({HttpMessageNotReadableException.class})
     public RespResult<Object> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException ex) {
-        log.error("GlobalExceptionHandler ==> HttpMessageNotReadableException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> HttpMessageNotReadableException: {}", ex.getMessage(), ex);
         return RespHelper.fail("Http消息不可读: " + ex.getMessage());
     }
 
@@ -142,7 +142,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({TypeMismatchException.class})
     public RespResult<Object> typeMismatchExceptionHandler(TypeMismatchException ex) {
-        log.error("GlobalExceptionHandler ==> TypeMismatchException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> TypeMismatchException: {}", ex.getMessage(), ex);
         return RespHelper.fail(400, "服务器异常: " + ex.getMessage());
     }
 
@@ -160,7 +160,7 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler({StackOverflowError.class})
     public RespResult<Object> stackOverflowExceptionHandler(StackOverflowError ex) {
-        log.error("GlobalExceptionHandler ==> StackOverflowError: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> StackOverflowError: {}", ex.getMessage(), ex);
         return RespHelper.fail("栈溢出异常: " + ex.getMessage());
     }
 
@@ -172,25 +172,25 @@ public class GlobalExceptionHandler {
      */
     @ExceptionHandler(ServiceException.class)
     public RespResult<Object> serviceExceptionHandler(ServiceException ex) {
-        log.error("GlobalExceptionHandler ==> ServiceException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> ServiceException: {}", ex.getMessage(), ex);
         return RespHelper.fail(ExceptionCode.SERVICE_EXCEPTION.getCode(), "业务异常: " + ex.getMessage());
     }
 
     @ExceptionHandler(BaseException.class)
     public RespResult<Object> baseExceptionHandler(BaseException ex) {
-        log.error("GlobalExceptionHandler ==> BaseException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> BaseException: {}", ex.getMessage(), ex);
         return RespHelper.fail(ExceptionCode.SERVICE_EXCEPTION.getCode(), "基础异常: " + ex.getMessage());
     }
 
     @ExceptionHandler(BaseRuntimeException.class)
     public RespResult<Object> baseExceptionHandler(BaseRuntimeException ex) {
-        log.error("GlobalExceptionHandler ==> BaseRuntimeException: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> BaseRuntimeException: {}", ex.getMessage(), ex);
         return RespHelper.fail(ExceptionCode.SERVICE_EXCEPTION.getCode(), "基础运行异常: " + ex.getMessage());
     }
 
     @ExceptionHandler(Exception.class)
     public RespResult<Object> exceptionHandler(Exception ex) {
-        log.error("GlobalExceptionHandler ==> Exception: {}", ex.getMessage());
+        log.error("GlobalExceptionHandler ==> Exception: {}", ex.getMessage(), ex);
         return RespHelper.fail(ExceptionCode.SERVICE_EXCEPTION.getCode(), "其他异常: " + ex.getMessage());
     }
 }
