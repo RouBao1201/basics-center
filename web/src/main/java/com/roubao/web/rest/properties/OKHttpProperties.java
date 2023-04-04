@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @ConfigurationProperties(prefix = "okhttp.config")
 public class OKHttpProperties {
     /**
-     * Max Idle Connections
+     * 最大空闲连接数
      */
     private Integer maxIdleConnections = 30;
     /**
@@ -50,7 +50,7 @@ public class OKHttpProperties {
      */
     private TimeUnit readTimeoutTimeUnit = TimeUnit.SECONDS;
     /**
-     * 线程配置
+     * 核心线程数
      */
     private int corePoolSize = Runtime.getRuntime().availableProcessors();
     /**
