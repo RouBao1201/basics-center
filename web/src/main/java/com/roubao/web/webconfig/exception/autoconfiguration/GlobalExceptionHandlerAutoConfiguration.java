@@ -1,6 +1,6 @@
-package com.roubao.web.response.autoconfiguration;
+package com.roubao.web.webconfig.exception.autoconfiguration;
 
-import com.roubao.web.response.config.GlobalExceptionHandler;
+import com.roubao.web.webconfig.exception.config.GlobalExceptionHandler;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 

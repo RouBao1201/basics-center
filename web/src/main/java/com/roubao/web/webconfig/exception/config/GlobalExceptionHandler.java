@@ -1,4 +1,4 @@
-package com.roubao.web.response.config;
+package com.roubao.web.webconfig.exception.config;
 
 import com.roubao.common.exception.enums.ExceptionCode;
 import com.roubao.common.exception.model.BaseException;
