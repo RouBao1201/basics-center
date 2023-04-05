@@ -11,9 +11,9 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  **/
 @ConfigurationProperties(prefix = "rsa")
 public class RsaProperties {
-    private String privateKey;
+    private String privateKey = "roubao";
 
-    private String publicKey;
+    private String publicKey = "roubao";
 
     public String getPrivateKey() {
         return privateKey;

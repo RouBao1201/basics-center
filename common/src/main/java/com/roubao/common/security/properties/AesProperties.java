@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  **/
 @ConfigurationProperties(prefix = "aes")
 public class AesProperties {
-    private String key;
+    private String key = "roubao";
 
     public String getKey() {
         return key;

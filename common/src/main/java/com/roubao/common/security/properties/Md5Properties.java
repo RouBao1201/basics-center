@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  **/
 @ConfigurationProperties(prefix = "md5")
 public class Md5Properties {
-    private String salt;
+    private String salt = "roubao";
 
     public String getSalt() {
         return salt;
