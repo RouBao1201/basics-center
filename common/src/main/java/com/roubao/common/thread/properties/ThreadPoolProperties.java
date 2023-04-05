@@ -1,5 +1,6 @@
 package com.roubao.common.thread.properties;
 
+import com.roubao.common.thread.enums.RejectedPolicy;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -35,6 +36,11 @@ public class ThreadPoolProperties {
      * 最大线程数
      */
     private int maximumPoolSize = 20;
+
+    /**
+     * 拒绝策略
+     */
+    private RejectedPolicy rejectedPolicy = RejectedPolicy.ABORT;
 
     public String getPrefixName() {
         return prefixName;
@@ -74,5 +80,25 @@ public class ThreadPoolProperties {
 
     public void setMaximumPoolSize(int maximumPoolSize) {
         this.maximumPoolSize = maximumPoolSize;
+    }
+
+    public RejectedPolicy getRejectedPolicy() {
+        return rejectedPolicy;
+    }
+
+    public void setRejectedPolicy(RejectedPolicy rejectedPolicy) {
+        this.rejectedPolicy = rejectedPolicy;
+    }
+
+    @Override
+    public String toString() {
+        return "ThreadPoolProperties{" +
+                "prefixName='" + prefixName + '\'' +
+                ", blockingQueueLength=" + blockingQueueLength +
+                ", keepAliveTime=" + keepAliveTime +
+                ", corePoolSize=" + corePoolSize +
+                ", maximumPoolSize=" + maximumPoolSize +
+                ", rejectedPolicy=" + rejectedPolicy +
+                '}';
     }
 }

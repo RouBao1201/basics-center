@@ -1,7 +1,6 @@
 package com.roubao.common.thread.bean;
 
 import cn.hutool.core.thread.ThreadFactoryBuilder;
-import com.roubao.common.thread.config.ThreadPoolRejectedHandler;
 import com.roubao.common.thread.properties.ThreadPoolProperties;
 import lombok.extern.slf4j.Slf4j;
 
@@ -120,7 +119,7 @@ public class ThreadPoolHandler {
                             .setNamePrefix(this.threadPoolProperties.getPrefixName() + "-")
                             .setUncaughtExceptionHandler(
                                     (thread, throwable) -> log.error("ThreadPoolHandler => UncaughtExceptionHandler Thread[{}] execute exception. ErrorMessage:{}.", thread, throwable)).build(),
-                    ThreadPoolRejectedHandler.abortPolicy()) {
+                    this.threadPoolProperties.getRejectedPolicy().getHandler()) {
                 @Override
                 protected void afterExecute(Runnable r, Throwable t) {
                     if (r instanceof FutureTask<?>) {
