@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @copyright 2022-2099 SongYanBin All Rights Reserved.
  * @since 2022/12/23
  **/
-@ConfigurationProperties(prefix = "thread-pool.config")
+@ConfigurationProperties(prefix = "thread-pool.configuration")
 public class ThreadPoolProperties {
     /**
      * 线程池前缀
