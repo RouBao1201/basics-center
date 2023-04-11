@@ -17,18 +17,18 @@ import lombok.extern.slf4j.Slf4j;
 @EnableConfigurationProperties(AccessSniperInterceptorProperties.class)
 public class AccessSniperWebConfiguration implements WebMvcConfigurer {
 
-    private final AccessSniperInterceptorProperties accessLimitInterceptorProperties;
+    private final AccessSniperInterceptorProperties accessSniperInterceptorProperties;
 
-    public AccessSniperWebConfiguration(AccessSniperInterceptorProperties accessLimitInterceptorProperties) {
-        this.accessLimitInterceptorProperties = accessLimitInterceptorProperties;
+    public AccessSniperWebConfiguration(AccessSniperInterceptorProperties accessSniperInterceptorProperties) {
+        this.accessSniperInterceptorProperties = accessSniperInterceptorProperties;
     }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         log.info("AccessLimitWebConfiguration ==> addInterceptors configuration properties:{}.",
-            accessLimitInterceptorProperties);
+            accessSniperInterceptorProperties);
         registry.addInterceptor(new AccessSniperInterceptor())
-            .addPathPatterns(accessLimitInterceptorProperties.getInterceptPatterns())
-            .excludePathPatterns(accessLimitInterceptorProperties.getExcludePatterns());
+            .addPathPatterns(accessSniperInterceptorProperties.getInterceptPatterns())
+            .excludePathPatterns(accessSniperInterceptorProperties.getExcludePatterns());
     }
 }
