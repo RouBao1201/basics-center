@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
 })
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-public @interface AccessLimit {
+public @interface AccessSniper {
     /**
      * 访问时长区间（单位毫秒）
      * 

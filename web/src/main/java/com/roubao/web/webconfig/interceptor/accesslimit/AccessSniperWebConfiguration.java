@@ -14,12 +14,12 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2023/4/7
  **/
 @Slf4j
-@EnableConfigurationProperties(AccessLimitInterceptorProperties.class)
-public class AccessLimitWebConfiguration implements WebMvcConfigurer {
+@EnableConfigurationProperties(AccessSniperInterceptorProperties.class)
+public class AccessSniperWebConfiguration implements WebMvcConfigurer {
 
-    private final AccessLimitInterceptorProperties accessLimitInterceptorProperties;
+    private final AccessSniperInterceptorProperties accessLimitInterceptorProperties;
 
-    public AccessLimitWebConfiguration(AccessLimitInterceptorProperties accessLimitInterceptorProperties) {
+    public AccessSniperWebConfiguration(AccessSniperInterceptorProperties accessLimitInterceptorProperties) {
         this.accessLimitInterceptorProperties = accessLimitInterceptorProperties;
     }
 

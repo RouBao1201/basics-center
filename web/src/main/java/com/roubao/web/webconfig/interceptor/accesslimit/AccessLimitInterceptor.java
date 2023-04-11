@@ -46,11 +46,11 @@ public class AccessLimitInterceptor implements HandlerInterceptor, Ordered {
         throws Exception {
         if (handler instanceof HandlerMethod) {
             // 判断类或者方法上是否有防刷注解（方法注解优先级大于类）
-            AccessLimit annotation = null;
+            AccessSniper annotation = null;
             HandlerMethod handlerMethod = (HandlerMethod) handler;
-            annotation = handlerMethod.getMethodAnnotation(AccessLimit.class);
+            annotation = handlerMethod.getMethodAnnotation(AccessSniper.class);
             if (ObjUtil.isEmpty(annotation)) {
-                annotation = handlerMethod.getMethod().getDeclaringClass().getAnnotation(AccessLimit.class);
+                annotation = handlerMethod.getMethod().getDeclaringClass().getAnnotation(AccessSniper.class);
             }
             if (ObjUtil.isEmpty(annotation)) {
                 return true;
@@ -59,7 +59,7 @@ public class AccessLimitInterceptor implements HandlerInterceptor, Ordered {
             String key = PREFIX_KEY + handlerMethod.getMethod().getDeclaringClass().getName() + "_"
                 + handlerMethod.getMethod().getName();
             long currentTime = System.currentTimeMillis();
-            AccessLimit finalAnnotation = annotation;
+            AccessSniper finalAnnotation = annotation;
 
             // 判断是否已达到接口访问限制次数
             long lockFlag = LOCK_TIME_MAP.updateAndGet(key, (oldVal) -> {
@@ -69,7 +69,7 @@ public class AccessLimitInterceptor implements HandlerInterceptor, Ordered {
                     if (gapTime < finalAnnotation.lockTime()) {
                         ACCESS_COUNT_MAP.incrementAndGet(key);
                         log.error(
-                            "AccessLimit INTERFACE KEY:" + key + " was within the access limit time. LimitConfig:["
+                            "AccessSniper INTERFACE KEY:" + key + " was within the access limit time. LimitConfig:["
                                 + finalAnnotation.accessTimes() + " times in " + finalAnnotation.seconds()
                                 + " seconds, lockTime: " + finalAnnotation.lockTime() + "s]. Please try again later.");
                         return oldVal;

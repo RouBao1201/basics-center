@@ -15,7 +15,7 @@ import lombok.ToString;
 @Data
 @ToString
 @ConfigurationProperties("interceptor.access-limit")
-public class AccessLimitInterceptorProperties {
+public class AccessSniperInterceptorProperties {
     /**
      * 需要拦截的路径
      */

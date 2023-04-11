@@ -18,6 +18,6 @@ import org.springframework.context.annotation.Import;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import(AccessLimitAutoConfigurationImportSelector.class)
-public @interface EnableCustomAccessLimit {
+@Import(AccessSniperAutoConfigurationImportSelector.class)
+public @interface EnableCustomAccessSniper {
 }
