@@ -78,7 +78,7 @@ public class LogRecordAspect {
         boolean recordIndexFlag = "com.roubao.web.common.logrecord.DefaultLogRecordStrategy".equals(fullClassName);
         Object obj = null;
         if (recordIndexFlag) {
-            ReflectUtil.invoke(ReflectUtil.newInstance(aClass), "record", logRecordDto);
+            ReflectUtil.invoke(ReflectUtil.newInstance(aClass), "afterRecord", logRecordDto);
         }
         obj = pjp.proceed();
         if (!recordIndexFlag) {
