@@ -1,9 +1,10 @@
 package com.roubao.basics.testall;
 
-import com.roubao.web.webconfig.exceptionhandler.annotations.EnableCustomGlobalExceptionHandler;
-import com.roubao.web.webconfig.interceptor.annotations.EnableCustomRequestInfoPreLog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.roubao.web.webconfig.exceptionhandler.EnableCustomGlobalExceptionHandler;
+import com.roubao.web.webconfig.interceptor.accesslimit.EnableCustomAccessSniper;
 
 /**
  * @author SongYanBin
@@ -12,7 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  **/
 @SpringBootApplication
 @EnableCustomGlobalExceptionHandler
-@EnableCustomRequestInfoPreLog
+//@EnableCustomRequestInfoPreLog
+@EnableCustomAccessSniper
 public class BasicsTestAllApp {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(BasicsTestAllApp.class);
