@@ -52,11 +52,6 @@ public class LogRecordAspect {
         MethodSignature methodSignature = (MethodSignature) pjp.getSignature();
         Method method = methodSignature.getMethod();
         LogRecord annotation = method.getAnnotation(LogRecord.class);
-        Class<? extends LogRecordStrategy> aClass = annotation.strategyClass();
-        String fullClassName = aClass.getName();
-        int classNameStartIndex = fullClassName.lastIndexOf(".") + 1;
-        String className = fullClassName.substring(classNameStartIndex);
-        String beanName = className.substring(0, 1).toLowerCase(Locale.ROOT) + className.substring(1);
 
         // 获取请求参数 组装日志记录传递参数
         RequestAttributes ra = RequestContextHolder.getRequestAttributes();
@@ -73,6 +68,12 @@ public class LogRecordAspect {
         logRecordDto.setClassName(pjp.getTarget().getClass().getName());
 
         // 执行标志位 默认日志记录在方法执行前执行（前置通知）,其余在方法执行后执行（后置通知）
+        Class<? extends LogRecordStrategy> aClass = annotation.strategyClass();
+        String fullClassName = aClass.getName();
+        int classNameStartIndex = fullClassName.lastIndexOf(".") + 1;
+        String className = fullClassName.substring(classNameStartIndex);
+        String beanName = className.substring(0, 1).toLowerCase(Locale.ROOT) + className.substring(1);
+
         boolean recordIndexFlag = "com.roubao.web.common.logrecord.DefaultLogRecordStrategy".equals(fullClassName);
         Object obj = null;
         if (recordIndexFlag) {
