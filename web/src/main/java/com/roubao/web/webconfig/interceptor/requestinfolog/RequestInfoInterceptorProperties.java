@@ -1,8 +1,8 @@
-package com.roubao.web.webconfig.interceptor.properties;
-
-import org.springframework.boot.context.properties.ConfigurationProperties;
+package com.roubao.web.webconfig.interceptor.requestinfolog;
 
 import java.util.Arrays;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
  * 请求信息拦截器配置

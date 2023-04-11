@@ -1,6 +1,6 @@
 package com.roubao.basics.testall;
 
-import com.roubao.web.webconfig.exception.annotations.EnableCustomGlobalExceptionHandler;
+import com.roubao.web.webconfig.exceptionhandler.annotations.EnableCustomGlobalExceptionHandler;
 import com.roubao.web.webconfig.interceptor.annotations.EnableCustomRequestInfoPreLog;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

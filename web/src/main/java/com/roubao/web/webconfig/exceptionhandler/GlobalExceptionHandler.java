@@ -1,12 +1,9 @@
-package com.roubao.web.webconfig.exception.config;
+package com.roubao.web.webconfig.exceptionhandler;
 
-import com.roubao.common.exception.enums.ExceptionCode;
-import com.roubao.common.exception.model.BaseException;
-import com.roubao.common.exception.model.BaseRuntimeException;
-import com.roubao.common.exception.model.ServiceException;
-import com.roubao.web.response.dto.RespResult;
-import com.roubao.web.response.utils.RespHelper;
-import lombok.extern.slf4j.Slf4j;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
+
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -15,9 +12,14 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.SQLException;
+import com.roubao.common.exception.enums.ExceptionCode;
+import com.roubao.common.exception.model.BaseException;
+import com.roubao.common.exception.model.BaseRuntimeException;
+import com.roubao.common.exception.model.ServiceException;
+import com.roubao.web.response.dto.RespResult;
+import com.roubao.web.response.utils.RespHelper;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 全局异常处理
@@ -131,7 +133,9 @@ public class GlobalExceptionHandler {
     /**
      * Http消息不可读异常
      */
-    @ExceptionHandler({HttpMessageNotReadableException.class})
+    @ExceptionHandler({
+        HttpMessageNotReadableException.class
+    })
     public RespResult<Object> httpMessageNotReadableExceptionHandler(HttpMessageNotReadableException ex) {
         log.error("GlobalExceptionHandler ==> HttpMessageNotReadableException: {}", ex.getMessage(), ex);
         return RespHelper.fail("Http消息不可读: " + ex.getMessage());
@@ -140,7 +144,9 @@ public class GlobalExceptionHandler {
     /**
      * 400错误
      */
-    @ExceptionHandler({TypeMismatchException.class})
+    @ExceptionHandler({
+        TypeMismatchException.class
+    })
     public RespResult<Object> typeMismatchExceptionHandler(TypeMismatchException ex) {
         log.error("GlobalExceptionHandler ==> TypeMismatchException: {}", ex.getMessage(), ex);
         return RespHelper.fail(400, "服务器异常: " + ex.getMessage());
@@ -149,7 +155,9 @@ public class GlobalExceptionHandler {
     /**
      * 500错误
      */
-    @ExceptionHandler({ConversionNotSupportedException.class, HttpMessageNotWritableException.class})
+    @ExceptionHandler({
+        ConversionNotSupportedException.class, HttpMessageNotWritableException.class
+    })
     public RespResult<Object> runtimeExceptionHandler(RuntimeException ex) {
         log.error("GlobalExceptionHandler ==> RuntimeException: {}", ex.getMessage());
         return RespHelper.fail("服务器异常: " + ex.getMessage());
@@ -158,7 +166,7 @@ public class GlobalExceptionHandler {
     /**
      * 栈溢出
      */
-    @ExceptionHandler({StackOverflowError.class})
+    @ExceptionHandler(StackOverflowError.class)
     public RespResult<Object> stackOverflowExceptionHandler(StackOverflowError ex) {
         log.error("GlobalExceptionHandler ==> StackOverflowError: {}", ex.getMessage(), ex);
         return RespHelper.fail("栈溢出异常: " + ex.getMessage());

@@ -1,13 +1,12 @@
-package com.roubao.web.webconfig.interceptor.annotations;
-
-import com.roubao.web.webconfig.interceptor.config.RequestInfoWebConfig;
-import org.springframework.context.annotation.Import;
+package com.roubao.web.webconfig.interceptor.requestinfolog;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+
+import org.springframework.context.annotation.Import;
 
 /**
  * @author SongYanBin
@@ -17,6 +16,6 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import(RequestInfoWebConfig.class)
+@Import(RequestInfoAutoConfigurationImportSelector.class)
 public @interface EnableCustomRequestInfoPreLog {
 }
