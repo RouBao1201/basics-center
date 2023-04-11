@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2023/4/7
  **/
 @Slf4j
-public class AccessLimitInterceptor implements HandlerInterceptor, Ordered {
+public class AccessSniperInterceptor implements HandlerInterceptor, Ordered {
     private static final String PREFIX_KEY = "ACCESS_LIMIT_INTERFACE_";
 
     /**

@@ -27,7 +27,7 @@ public class AccessSniperWebConfiguration implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry) {
         log.info("AccessLimitWebConfiguration ==> addInterceptors configuration properties:{}.",
             accessLimitInterceptorProperties);
-        registry.addInterceptor(new AccessLimitInterceptor())
+        registry.addInterceptor(new AccessSniperInterceptor())
             .addPathPatterns(accessLimitInterceptorProperties.getInterceptPatterns())
             .excludePathPatterns(accessLimitInterceptorProperties.getExcludePatterns());
     }
