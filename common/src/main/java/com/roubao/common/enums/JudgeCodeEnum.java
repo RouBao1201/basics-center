@@ -7,7 +7,7 @@ package com.roubao.common.enums;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/16
  **/
-public enum JudgeEnum {
+public enum JudgeCodeEnum {
     /**
      * 是-Y
      */
@@ -29,15 +29,15 @@ public enum JudgeEnum {
 
     private final String name;
 
-    JudgeEnum(String code, String name) {
+    JudgeCodeEnum(String code, String name) {
         this.code = code;
         this.name = name;
     }
 
     public static boolean validYes(String code) {
-        if (JudgeEnum.YES_Y.getCode().equals(code)) {
+        if (JudgeCodeEnum.YES_Y.getCode().equals(code)) {
             return true;
-        } else if (JudgeEnum.YES_0.getCode().equals(code)) {
+        } else if (JudgeCodeEnum.YES_0.getCode().equals(code)) {
             return true;
         } else {
             return false;
@@ -45,9 +45,9 @@ public enum JudgeEnum {
     }
 
     public static boolean validNo(String code) {
-        if (JudgeEnum.NO_N.getCode().equals(code)) {
+        if (JudgeCodeEnum.NO_N.getCode().equals(code)) {
             return true;
-        } else if (JudgeEnum.NO_1.getCode().equals(code)) {
+        } else if (JudgeCodeEnum.NO_1.getCode().equals(code)) {
             return true;
         } else {
             return false;
