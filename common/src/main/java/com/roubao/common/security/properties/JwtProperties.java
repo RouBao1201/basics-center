@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @copyright 2022-2099 SongYanBin All Rights Reserved.
  * @since 2022/12/9
  **/
-@ConfigurationProperties(prefix = "jwt")
+@ConfigurationProperties(prefix = "security.jwt")
 public class JwtProperties {
     private String secretKey = "roubao";
 

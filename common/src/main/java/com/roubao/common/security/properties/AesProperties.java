@@ -7,7 +7,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @copyright 2023-2099 SongYanBin All Rights Reserved.
  * @since 2023/4/5
  **/
-@ConfigurationProperties(prefix = "aes")
+@ConfigurationProperties(prefix = "security.aes")
 public class AesProperties {
     private String key = "roubao";
 

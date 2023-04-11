@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @copyright 2023-2099 SongYanBin All Rights Reserved.
  * @since 2023/4/5
  **/
-@ConfigurationProperties(prefix = "rsa")
+@ConfigurationProperties(prefix = "security.rsa")
 public class RsaProperties {
     private String privateKey = "roubao";
 
