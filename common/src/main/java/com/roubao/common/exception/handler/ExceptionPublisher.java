@@ -11,7 +11,7 @@ import com.roubao.common.exception.model.ServiceException;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/30
  **/
-public class ExceptionHandler {
+public class ExceptionPublisher {
     /**
      * 抛出业务异常
      *
@@ -43,7 +43,7 @@ public class ExceptionHandler {
         throw new ServiceException(code, message);
     }
 
-    private ExceptionHandler() {
+    private ExceptionPublisher() {
 
     }
 }
