@@ -1,9 +1,7 @@
-package com.roubao.basics.testall.orm.controller;
+package com.roubao.basics.testall.orm;
 
 import java.util.ArrayList;
 
-import com.roubao.basics.testall.orm.dto.DictBatchInsRequestDTO;
-import com.roubao.basics.testall.orm.dto.DictInsRequestDTO;
 import com.roubao.basics.testall.orm.mapper.DictMapper;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;

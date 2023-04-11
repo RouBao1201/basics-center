@@ -1,8 +1,7 @@
-package com.roubao.basics.testall.redis.controller;
+package com.roubao.basics.testall.redis;
 
 import javax.annotation.Resource;
 
-import com.roubao.basics.testall.redis.dto.RedisSetRequestDTO;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,7 +1,7 @@
 package com.roubao.basics.testall.orm.mapper;
 
 
-import com.roubao.basics.testall.orm.dto.DictInsRequestDTO;
+import com.roubao.basics.testall.orm.DictInsRequestDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

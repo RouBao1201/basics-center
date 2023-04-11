@@ -1,4 +1,4 @@
-package com.roubao.basics.testall.redis.dto;
+package com.roubao.basics.testall.redis;
 
 import lombok.Data;
 import lombok.ToString;

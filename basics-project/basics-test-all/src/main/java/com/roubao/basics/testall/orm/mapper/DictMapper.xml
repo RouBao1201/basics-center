@@ -2,12 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.roubao.basics.testall.orm.mapper.DictMapper">
 
-    <insert id="insertDict" parameterType="com.roubao.basics.testall.orm.dto.DictInsRequestDTO">
+    <insert id="insertDict" parameterType="com.roubao.basics.testall.orm.DictInsRequestDTO">
         INSERT INTO RB_SYS_DICT (DICT_ID, DICT_NAME)
         VALUES (#{dictDto.dictId}, #{dictDto.dictName})
     </insert>
 
-    <insert id="batchInsertDict" parameterType="com.roubao.basics.testall.orm.dto.DictInsRequestDTO">
+    <insert id="batchInsertDict" parameterType="com.roubao.basics.testall.orm.DictInsRequestDTO">
         insert into RB_SYS_DICT (DICT_ID, DICT_NAME)
         values
         <foreach collection="dictDtoList" index="index" item="item" separator=",">

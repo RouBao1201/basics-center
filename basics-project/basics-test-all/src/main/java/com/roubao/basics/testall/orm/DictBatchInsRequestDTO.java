@@ -1,4 +1,4 @@
-package com.roubao.basics.testall.orm.dto;
+package com.roubao.basics.testall.orm;
 
 import lombok.Data;
 import lombok.ToString;

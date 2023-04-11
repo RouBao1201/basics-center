@@ -1,4 +1,4 @@
-package com.roubao.basics.testall.sensitive.dto;
+package com.roubao.basics.testall.sensitive;
 
 
 import com.roubao.common.pojo.dto.BaseDTO;
