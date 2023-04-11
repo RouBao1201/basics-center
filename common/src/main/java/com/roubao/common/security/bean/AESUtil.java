@@ -161,14 +161,10 @@ public class AESUtil {
 
         SIZE_256(256);
 
-        private int size;
+        private final int size;
 
         public int getSize() {
             return size;
-        }
-
-        public void setSize(int size) {
-            this.size = size;
         }
 
         KeySize(int size) {
