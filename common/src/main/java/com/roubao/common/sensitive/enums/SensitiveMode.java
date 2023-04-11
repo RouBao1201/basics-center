@@ -1,6 +1,5 @@
 package com.roubao.common.sensitive.enums;
 
-
 import com.roubao.common.sensitive.strategy.AbstractSensitiveStrategy;
 import com.roubao.common.sensitive.strategy.impl.AddressSensitiveStrategy;
 import com.roubao.common.sensitive.strategy.impl.EmailSensitiveStrategy;
@@ -64,7 +63,7 @@ public enum SensitiveMode {
      */
     ADDRESS(new AddressSensitiveStrategy());
 
-    private AbstractSensitiveStrategy strategy;
+    private final AbstractSensitiveStrategy strategy;
 
     SensitiveMode(AbstractSensitiveStrategy strategy) {
         this.strategy = strategy;
@@ -72,9 +71,5 @@ public enum SensitiveMode {
 
     public AbstractSensitiveStrategy getStrategy() {
         return strategy;
-    }
-
-    public void setStrategy(AbstractSensitiveStrategy strategy) {
-        this.strategy = strategy;
     }
 }
