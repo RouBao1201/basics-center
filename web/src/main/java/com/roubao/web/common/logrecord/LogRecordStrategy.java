@@ -13,5 +13,5 @@ public interface LogRecordStrategy<T> {
      * 
      * @param recordData recordData
      */
-    void record(LogRecordDTO<T> recordData);
+    void afterRecord(LogRecordDTO<T> recordData);
 }

@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class DefaultLogRecordStrategy implements LogRecordStrategy<Object> {
     @Override
-    public void record(LogRecordDTO<Object> data) {
+    public void afterRecord(LogRecordDTO<Object> data) {
         StringBuilder sb = new StringBuilder();
         sb.append(System.lineSeparator())
                 .append("-------------------------------------------------Before-Default-Log-Record-START-------------------------------------------------").append(System.lineSeparator())

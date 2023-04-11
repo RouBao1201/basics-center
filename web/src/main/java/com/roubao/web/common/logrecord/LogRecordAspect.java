@@ -18,6 +18,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.roubao.common.thread.bean.ThreadPoolHandler;
 
+import cn.hutool.core.util.ObjUtil;
 import cn.hutool.core.util.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
 
@@ -59,7 +60,7 @@ public class LogRecordAspect {
         assert sra != null;
         HttpServletRequest request = sra.getRequest();
         LogRecordDTO<Object> logRecordDto = new LogRecordDTO<>();
-        logRecordDto.setParam(pjp.getArgs()[0]);
+        logRecordDto.setParam(ObjUtil.isNotEmpty(pjp.getArgs()) ? pjp.getArgs()[0] : null);
         logRecordDto.setMethodName(method.getName());
         logRecordDto.setUrl(request.getRequestURL().toString());
         logRecordDto.setDescription(annotation.description());
@@ -97,6 +98,6 @@ public class LogRecordAspect {
     public void executeBeanMethod(Class<? extends LogRecordStrategy> aClass, LogRecordDTO<Object> logRecordDto,
         String beanName) {
         LogRecordStrategy bean = defaultListableBeanFactory.getBean(beanName, aClass);
-        bean.record(logRecordDto);
+        bean.afterRecord(logRecordDto);
     }
 }
