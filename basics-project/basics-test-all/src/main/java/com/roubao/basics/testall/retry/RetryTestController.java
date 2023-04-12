@@ -2,9 +2,12 @@ package com.roubao.basics.testall.retry;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.roubao.basics.testall.common.TestRequestDTO;
 
 /**
  * @author SongYanBin
@@ -18,8 +21,8 @@ public class RetryTestController {
     @Resource
     private RetryTestService retryTestService;
 
-    @GetMapping("/retryTest")
-    public void retryTest() {
-        retryTestService.retryTest();
+    @PostMapping("/retryTest")
+    public void retryTest(@RequestBody TestRequestDTO dto) {
+        retryTestService.retryTest(dto);
     }
 }
