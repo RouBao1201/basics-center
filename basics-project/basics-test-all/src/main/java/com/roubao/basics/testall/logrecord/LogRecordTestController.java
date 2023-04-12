@@ -28,4 +28,12 @@ public class LogRecordTestController {
         System.out.println("自定义策略请求体: " + dto);
         return "成功";
     }
+
+    @PostMapping("/customRecordTestAsync")
+    @LogRecord(description = "自定义日志记录策略", strategyClass = CustomLogRecordAsyncStrategy.class,
+        runMode = LogRecord.RunMode.ASYNC)
+    public String customRecordTestAsync(@RequestBody LogRecordTestDTO dto) {
+        System.out.println("自定义策略请求体（异步）: " + dto);
+        return "成功";
+    }
 }

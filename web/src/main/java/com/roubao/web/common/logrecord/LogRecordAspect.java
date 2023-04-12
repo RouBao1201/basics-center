@@ -19,7 +19,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import com.roubao.common.thread.bean.ThreadPoolHandler;
 
 import cn.hutool.core.util.ObjUtil;
-import cn.hutool.core.util.ReflectUtil;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -78,7 +77,8 @@ public class LogRecordAspect {
         boolean recordIndexFlag = "com.roubao.web.common.logrecord.DefaultLogRecordStrategy".equals(fullClassName);
         Object obj = null;
         if (recordIndexFlag) {
-            ReflectUtil.invoke(ReflectUtil.newInstance(aClass), "afterRecord", logRecordDto);
+            DefaultLogRecordStrategy defaultLogRecordStrategy = new DefaultLogRecordStrategy();
+            defaultLogRecordStrategy.afterRecord(logRecordDto);
         }
         obj = pjp.proceed();
         if (!recordIndexFlag) {
@@ -95,9 +95,18 @@ public class LogRecordAspect {
         return obj;
     }
 
-    public void executeBeanMethod(Class<? extends LogRecordStrategy> aClass, LogRecordDTO<Object> logRecordDto,
+    public void executeBeanMethod(Class<? extends LogRecordStrategy> aClass, LogRecordDTO<Object> dto,
         String beanName) {
-        LogRecordStrategy bean = defaultListableBeanFactory.getBean(beanName, aClass);
-        bean.afterRecord(logRecordDto);
+        Class<?> superclass = aClass.getSuperclass();
+        String superClassName = superclass.getName();
+        if (AbstractLogRecordStrategy.class.getName().equals(superClassName)) {
+            AbstractLogRecordStrategy bean = (AbstractLogRecordStrategy) defaultListableBeanFactory.getBean(beanName,
+                aClass);
+            bean.process(dto);
+        }
+        else {
+            LogRecordStrategy bean = defaultListableBeanFactory.getBean(beanName, aClass);
+            bean.afterRecord(dto);
+        }
     }
 }

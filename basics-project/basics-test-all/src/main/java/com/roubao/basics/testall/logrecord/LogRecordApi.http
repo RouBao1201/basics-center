@@ -10,3 +10,12 @@ Content-Type: application/json
   "id": 999,
   "name": "roubao-test-customRecordTest"
 }
+
+###
+POST http://127.0.0.1:8090/logRecord/customRecordTestAsync
+Content-Type: application/json
+
+{
+  "id": 333,
+  "name": "roubao-test-customRecordTest"
+}

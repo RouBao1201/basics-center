@@ -15,5 +15,6 @@ public class CustomLogRecordStrategy implements LogRecordStrategy<LogRecordTestD
     @Override
     public void afterRecord(LogRecordDTO<LogRecordTestDTO> recordData) {
         System.out.println("执行自定义日志记录策略");
+        System.out.println(recordData);
     }
 }
