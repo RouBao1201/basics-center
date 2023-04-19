@@ -1,9 +1,12 @@
 package com.roubao.basics.testall.sensitive;
 
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.roubao.web.response.unifyresp.SkipUnifyResp;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -14,11 +17,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/sensitiveTest")
 @Slf4j
+@SkipUnifyResp
 public class SensitiveTestController {
 
     @GetMapping(value = "/queryUserInfo")
     public UserInfoDTO queryUserInfo() {
-        int a = 1 / 0;
         log.info("SensitiveTestController ==> /queryUserInfo ... ");
         UserInfoDTO userInfoDTO = new UserInfoDTO();
         userInfoDTO.setUsername("RouBao");

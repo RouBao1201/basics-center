@@ -1,5 +1,6 @@
 package com.roubao.basics.testall;
 
+import com.roubao.web.response.unifyresp.EnableCustomUnifiedResponse;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +15,7 @@ import org.springframework.retry.annotation.EnableRetry;
 @EnableRetry // 开启重试框架
 @SpringBootApplication
 @EnableCustomGlobalExceptionHandler // 开启全局异常处理（自定义）
+@EnableCustomUnifiedResponse
 // @EnableCustomRequestInfoPreLog // 开启请求信息拦截日志输出（自定义）
 // @EnableCustomAccessSniper // 开启访问拦截限制（自定义）
 public class BasicsTestAllApp {
