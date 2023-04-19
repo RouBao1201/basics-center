@@ -24,7 +24,7 @@ public class ThreadPoolAutoConfiguration {
         this.threadPoolProperties = threadPoolProperties;
     }
 
-    @Bean("threadPoolHolder")
+    @Bean("threadPoolHandler")
     @ConditionalOnMissingBean(ThreadPoolHandler.class)
     public ThreadPoolHandler threadPoolHolder() {
         return new ThreadPoolHandler(threadPoolProperties);
