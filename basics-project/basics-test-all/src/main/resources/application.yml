@@ -33,4 +33,5 @@ mybatis-plus:
     cache-enabled: false
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 unify-response:
-  run-mode: manual
+  configuration:
+    run-mode: manual

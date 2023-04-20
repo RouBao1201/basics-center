@@ -9,7 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/4/20
  **/
-@ConfigurationProperties(prefix = "unify-response")
+@ConfigurationProperties(prefix = "unify-response.configuration")
 public class IUnifiedResponseProperties {
 
     private EnableCustomUnifiedResponse.RunMode runMode = EnableCustomUnifiedResponse.RunMode.AUTO;
