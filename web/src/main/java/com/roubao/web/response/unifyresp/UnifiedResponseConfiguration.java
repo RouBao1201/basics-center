@@ -1,5 +1,6 @@
 package com.roubao.web.response.unifyresp;
 
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -19,7 +20,14 @@ import com.roubao.web.response.utils.RespHelper;
  * @since 2023/4/19
  **/
 @ControllerAdvice
+@EnableConfigurationProperties(IUnifiedResponseProperties.class)
 public class UnifiedResponseConfiguration implements ResponseBodyAdvice<Object> {
+
+    private final IUnifiedResponseProperties iUnifiedResponseProperties;
+
+    public UnifiedResponseConfiguration(IUnifiedResponseProperties iUnifiedResponseProperties) {
+        this.iUnifiedResponseProperties = iUnifiedResponseProperties;
+    }
 
     @Override
     public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
@@ -40,6 +48,18 @@ public class UnifiedResponseConfiguration implements ResponseBodyAdvice<Object> 
         if (obj instanceof RespResult) {
             return obj;
         }
-        return RespHelper.success(obj);
+
+        EnableCustomUnifiedResponse.RunMode runMode = iUnifiedResponseProperties.getRunMode();
+        if (runMode == EnableCustomUnifiedResponse.RunMode.AUTO) {
+            return RespHelper.success(obj);
+        }
+        else {
+            UnifyResp unifyRespForMethod = methodParameter.getMethodAnnotation(UnifyResp.class);
+            UnifyResp unifyRespForClass = methodParameter.getDeclaringClass().getAnnotation(UnifyResp.class);
+            if (unifyRespForMethod != null || unifyRespForClass != null) {
+                return RespHelper.success(obj);
+            }
+        }
+        return obj;
     }
 }

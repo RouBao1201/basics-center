@@ -11,19 +11,19 @@ public enum RespCode {
     /**
      * 成功200
      */
-    SUCCESS_200(200, "成功"),
+    SUCCESS_200(200, "success"),
     /**
      * 失败500
      */
-    FAIL_500(500, "失败"),
+    FAIL_500(500, "failure"),
     /**
      * 成功0
      */
-    SUCCESS_0(0, "成功"),
+    SUCCESS_0(0, "success"),
     /**
      * 失败1
      */
-    FAIL_1(1, "失败");
+    FAIL_1(1, "failure");
 
     private final Integer code;
 
