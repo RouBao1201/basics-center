@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.retry.annotation.EnableRetry;
 
-import com.roubao.web.response.unifyresp.EnableCustomUnifiedResponse;
+import com.roubao.web.response.unifyresp.EnableCustomUnifiedSuccResponse;
 import com.roubao.web.webconfig.exceptionhandler.EnableCustomGlobalExceptionHandler;
 
 /**
@@ -15,7 +15,7 @@ import com.roubao.web.webconfig.exceptionhandler.EnableCustomGlobalExceptionHand
 @EnableRetry // 开启重试框架
 @SpringBootApplication
 @EnableCustomGlobalExceptionHandler // 开启全局异常处理（自定义）
-@EnableCustomUnifiedResponse // 开启统一响应封装
+@EnableCustomUnifiedSuccResponse // 开启统一响应封装
 // @EnableCustomRequestInfoPreLog // 开启请求信息拦截日志输出（自定义）
 // @EnableCustomAccessSniper // 开启访问拦截限制（自定义）
 public class BasicsTestAllApp {

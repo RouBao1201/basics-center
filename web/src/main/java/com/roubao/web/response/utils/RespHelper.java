@@ -49,6 +49,19 @@ public class RespHelper {
 
     /**
      * 成功响应
+     *
+     * @param code 响应编码
+     * @param message 响应信息
+     * @param data 响应数据
+     * @param <T> 数据泛型
+     * @return RespResult
+     */
+    public static <T> RespResult<T> success(Integer code, String message, T data) {
+        return build(code, message, data);
+    }
+
+    /**
+     * 成功响应
      * 
      * @param data 响应数据
      * @return RespResult

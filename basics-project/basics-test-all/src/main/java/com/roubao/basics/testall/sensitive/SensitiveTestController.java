@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.roubao.basics.testall.retry.RetryTestController;
 import com.roubao.common.spring.holder.SpringContextHolder;
-import com.roubao.web.response.unifyresp.UnifyResp;
+import com.roubao.web.response.unifyresp.UnifySuccResp;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class SensitiveTestController {
 
     @GetMapping(value = "/queryUserInfo")
-    @UnifyResp
+    @UnifySuccResp
     public UserInfoDTO queryUserInfo() {
         System.out.println(SpringContextHolder.getBean(RetryTestController.class, true));
         log.info("SensitiveTestController ==> /queryUserInfo ... ");

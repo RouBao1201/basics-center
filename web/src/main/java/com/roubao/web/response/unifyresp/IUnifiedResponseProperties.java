@@ -12,13 +12,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "unify-response.configuration")
 public class IUnifiedResponseProperties {
 
-    private EnableCustomUnifiedResponse.RunMode runMode = EnableCustomUnifiedResponse.RunMode.AUTO;
+    private EnableCustomUnifiedSuccResponse.RunMode runMode = EnableCustomUnifiedSuccResponse.RunMode.AUTO;
 
-    public EnableCustomUnifiedResponse.RunMode getRunMode() {
+    public EnableCustomUnifiedSuccResponse.RunMode getRunMode() {
         return runMode;
     }
 
-    public void setRunMode(EnableCustomUnifiedResponse.RunMode runMode) {
+    public void setRunMode(EnableCustomUnifiedSuccResponse.RunMode runMode) {
         this.runMode = runMode;
     }
 
