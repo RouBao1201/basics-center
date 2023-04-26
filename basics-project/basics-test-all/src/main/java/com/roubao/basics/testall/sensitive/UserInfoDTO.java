@@ -1,9 +1,9 @@
 package com.roubao.basics.testall.sensitive;
 
-
-import com.roubao.common.pojo.dto.BaseDTO;
 import com.roubao.common.sensitive.annotation.ISensitive;
 import com.roubao.common.sensitive.enums.SensitiveMode;
+import com.roubao.web.common.pojoconverter.POConverter;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -14,7 +14,7 @@ import lombok.ToString;
  **/
 @Data
 @ToString
-public class UserInfoDTO extends BaseDTO {
+public class UserInfoDTO {
     private static final long serialVersionUID = 9148241281912316356L;
 
     @ISensitive
