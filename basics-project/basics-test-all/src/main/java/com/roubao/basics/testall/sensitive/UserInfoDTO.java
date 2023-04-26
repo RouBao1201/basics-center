@@ -2,7 +2,6 @@ package com.roubao.basics.testall.sensitive;
 
 import com.roubao.common.sensitive.annotation.ISensitive;
 import com.roubao.common.sensitive.enums.SensitiveMode;
-import com.roubao.web.common.pojoconverter.POConverter;
 
 import lombok.Data;
 import lombok.ToString;

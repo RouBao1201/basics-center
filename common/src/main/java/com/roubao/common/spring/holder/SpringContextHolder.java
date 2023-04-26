@@ -5,6 +5,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
@@ -18,7 +19,7 @@ import org.springframework.stereotype.Component;
  * @since 2022/12/22
  **/
 @Component
-public class SpringContextHolder implements ApplicationContextAware {
+public class SpringContextHolder implements ApplicationContextAware, DisposableBean {
     private static final Logger log = LoggerFactory.getLogger(SpringContextHolder.class);
 
     private static ApplicationContext applicationContext;
@@ -162,11 +163,42 @@ public class SpringContextHolder implements ApplicationContextAware {
     }
 
     /**
+     * 根据bean名称获取bean类型
+     * 
+     * @param beanName bean名称
+     * @return bean类型
+     */
+    public static Class<?> getBeanType(String beanName) {
+        return getApplicationContext().getType(beanName);
+    }
+
+    /**
+     * 根据bean类型获取bean名称
+     * 
+     * @param beanClass bean类型
+     * @return bean名称集合
+     * @param <T> bean类型泛型
+     */
+    public static <T> String[] getBeanNamesForType(Class<T> beanClass) {
+        return getApplicationContext().getBeanNamesForType(beanClass);
+    }
+
+    /**
      * 校验spring上下对象是否为空
      */
     private static void checkApplicationContext() {
         if (applicationContext == null) {
             throw new IllegalStateException("SpringContextHolder => ApplicationContext is not injected.");
         }
+    }
+
+    @Override
+    public void destroy() throws Exception {
+        SpringContextHolder.clearHolder();
+    }
+
+    private static void clearHolder() {
+        log.info("SpringContextHolder ==> Clean spring context.");
+        SpringContextHolder.applicationContext = null;
     }
 }
