@@ -1,7 +1,7 @@
 package com.roubao.common.sensitive.utils;
 
 
-import com.roubao.common.sensitive.enums.SensitiveMode;
+import com.roubao.common.sensitive.enums.DesensitizeStrategy;
 import com.roubao.common.sensitive.strategy.AbstractSensitiveStrategy;
 
 /**
@@ -11,7 +11,7 @@ import com.roubao.common.sensitive.strategy.AbstractSensitiveStrategy;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/15
  **/
-public class SensitiveUtil {
+public class DesensitizeUtil {
     /**
      * 脱敏
      *
@@ -19,7 +19,7 @@ public class SensitiveUtil {
      * @param sourceStr     原字符串
      * @return 脱敏后字符串
      */
-    public static String desensitize(SensitiveMode sensitiveMode, String sourceStr) {
+    public static String desensitize(DesensitizeStrategy sensitiveMode, String sourceStr) {
         AbstractSensitiveStrategy strategyEngine = sensitiveMode.getStrategy();
         return strategyEngine.desensitize(sourceStr);
     }
@@ -31,10 +31,10 @@ public class SensitiveUtil {
      * @return 脱敏后字符串
      */
     public static String desensitize(String sourceStr) {
-        return desensitize(SensitiveMode.DEFAULT, sourceStr);
+        return desensitize(DesensitizeStrategy.DEFAULT, sourceStr);
     }
 
-    private SensitiveUtil() {
+    private DesensitizeUtil() {
 
     }
 }

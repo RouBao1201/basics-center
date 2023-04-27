@@ -1,7 +1,7 @@
 package com.roubao.basics.testall.sensitive;
 
-import com.roubao.common.sensitive.annotation.ISensitive;
-import com.roubao.common.sensitive.enums.SensitiveMode;
+import com.roubao.common.sensitive.annotation.Desensitize;
+import com.roubao.common.sensitive.enums.DesensitizeStrategy;
 
 import lombok.Data;
 import lombok.ToString;
@@ -16,13 +16,13 @@ import lombok.ToString;
 public class UserInfoDTO {
     private static final long serialVersionUID = 9148241281912316356L;
 
-    @ISensitive
+    @Desensitize
     private String username;
 
-    @ISensitive(SensitiveMode.FULL)
+    @Desensitize(DesensitizeStrategy.FULL)
     private String password;
 
-    @ISensitive(SensitiveMode.NAME)
+    @Desensitize(DesensitizeStrategy.NAME)
     private String name;
 
     private Integer age;

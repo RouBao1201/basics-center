@@ -9,9 +9,9 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.ContextualSerializer;
-import com.roubao.common.sensitive.annotation.ISensitive;
-import com.roubao.common.sensitive.enums.SensitiveMode;
-import com.roubao.common.sensitive.utils.SensitiveUtil;
+import com.roubao.common.sensitive.annotation.Desensitize;
+import com.roubao.common.sensitive.enums.DesensitizeStrategy;
+import com.roubao.common.sensitive.utils.DesensitizeUtil;
 
 /**
  * 序列化配置类
@@ -20,18 +20,18 @@ import com.roubao.common.sensitive.utils.SensitiveUtil;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/15
  **/
-public class SensitiveJsonSerializerConfig extends JsonSerializer<String> implements ContextualSerializer {
-    private SensitiveMode strategy;
+public class DesensitizeJsonSerializerConfig extends JsonSerializer<String> implements ContextualSerializer {
+    private DesensitizeStrategy strategy;
 
     @Override
     public void serialize(String value, JsonGenerator gen, SerializerProvider serializers) throws IOException {
-        gen.writeString(SensitiveUtil.desensitize(this.strategy, value));
+        gen.writeString(DesensitizeUtil.desensitize(this.strategy, value));
     }
 
     @Override
     public JsonSerializer<?> createContextual(SerializerProvider prov, BeanProperty property)
             throws JsonMappingException {
-        ISensitive annotation = property.getAnnotation(ISensitive.class);
+        Desensitize annotation = property.getAnnotation(Desensitize.class);
         if (Objects.nonNull(annotation) && Objects.equals(String.class, property.getType().getRawClass())) {
             this.strategy = annotation.value();
             return this;

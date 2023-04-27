@@ -17,7 +17,7 @@ import com.roubao.common.sensitive.strategy.impl.SecondHalfSensitiveStrategy;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/15
  **/
-public enum SensitiveMode {
+public enum DesensitizeStrategy {
     /**
      * 默认脱敏公式（全脱敏）
      */
@@ -65,7 +65,7 @@ public enum SensitiveMode {
 
     private final AbstractSensitiveStrategy strategy;
 
-    SensitiveMode(AbstractSensitiveStrategy strategy) {
+    DesensitizeStrategy(AbstractSensitiveStrategy strategy) {
         this.strategy = strategy;
     }
 

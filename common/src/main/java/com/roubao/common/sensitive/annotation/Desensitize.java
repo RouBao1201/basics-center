@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 
 import com.fasterxml.jackson.annotation.JacksonAnnotationsInside;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.roubao.common.sensitive.config.SensitiveJsonSerializerConfig;
-import com.roubao.common.sensitive.enums.SensitiveMode;
+import com.roubao.common.sensitive.config.DesensitizeJsonSerializerConfig;
+import com.roubao.common.sensitive.enums.DesensitizeStrategy;
 
 /**
  * 脱敏自定义注解
@@ -22,12 +22,12 @@ import com.roubao.common.sensitive.enums.SensitiveMode;
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
 @JacksonAnnotationsInside // 这个注解用来标记Jackson复合注解,当你使用多个Jackson注解组合成一个自定义注解时会用到它
-@JsonSerialize(using = SensitiveJsonSerializerConfig.class) // 指定使用自定义的序列化器
-public @interface ISensitive {
+@JsonSerialize(using = DesensitizeJsonSerializerConfig.class) // 指定使用自定义的序列化器
+public @interface Desensitize {
     /**
      * 脱敏策略
      *
-     * @return SensitiveMode
+     * @return DesensitizeStrategy
      */
-    SensitiveMode value() default SensitiveMode.DEFAULT;
+    DesensitizeStrategy value() default DesensitizeStrategy.DEFAULT;
 }
