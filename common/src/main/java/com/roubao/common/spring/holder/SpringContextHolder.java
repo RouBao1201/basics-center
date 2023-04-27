@@ -1,5 +1,7 @@
 package com.roubao.common.spring.holder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -7,9 +9,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
+import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
+
+import cn.hutool.core.map.MapUtil;
 
 /**
  * spring上下文持有工具类
@@ -148,8 +153,24 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      * @param <T> 枚举
      * @return bean
      */
-    public static <T> Map<String, T> getBeanMapOfType(Class<T> beanClass) {
+    public static <T> Map<String, T> getBeanMapForType(Class<T> beanClass) {
         return getApplicationContext().getBeansOfType(beanClass);
+    }
+
+    /**
+     * 根据bean类型获取所有bean
+     *
+     * @param beanClass bean类型
+     * @param <T> 枚举
+     * @return bean
+     */
+    public static <T> List<T> getBeanListForType(Class<T> beanClass) {
+        List<T> beanList = new ArrayList<>();
+        Map<String, T> beanMapForType = getBeanMapForType(beanClass);
+        if (MapUtil.isNotEmpty(beanMapForType)) {
+            beanMapForType.forEach((beanName, beanObj) -> beanList.add(beanObj));
+        }
+        return beanList;
     }
 
     /**
@@ -181,6 +202,51 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      */
     public static <T> String[] getBeanNamesForType(Class<T> beanClass) {
         return getApplicationContext().getBeanNamesForType(beanClass);
+    }
+
+    /**
+     * 注册单例bean（不存在才注册）
+     * 
+     * @param beanName bean名称
+     * @param beanObj bean对象
+     * @return bean对象
+     * @param <T> bean对象类型泛型
+     */
+    public static <T> T registerSingletonBeanIfAbsent(String beanName, T beanObj) {
+        T bean;
+        if (containsBean(beanName)) {
+            bean = (T) getBean(beanName, beanObj.getClass());
+        }
+        else {
+            bean = registerSingletonBean(beanName, beanObj);
+        }
+        return bean;
+    }
+
+    /**
+     * 注册单例bean
+     * 
+     * @param beanName bean名称
+     * @param beanObj bean对象
+     * @return 注册的bean对象
+     * @param <T> bean对象类型泛型
+     */
+    public static <T> T registerSingletonBean(String beanName, T beanObj) {
+        DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) getApplicationContext()
+            .getAutowireCapableBeanFactory();
+        beanFactory.registerSingleton(beanName, beanObj);
+        beanFactory.autowireBean(beanObj);
+        return (T) beanFactory.getBean(beanName, beanObj.getClass());
+    }
+
+    /**
+     * 判断是否单例bean
+     * 
+     * @param beanName bean名称
+     * @return 是否单例bean
+     */
+    public static boolean isSingletonBean(String beanName) {
+        return getApplicationContext().isSingleton(beanName);
     }
 
     /**
