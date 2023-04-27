@@ -74,7 +74,7 @@ public class LogRecordAspect {
         String className = fullClassName.substring(classNameStartIndex);
         String beanName = className.substring(0, 1).toLowerCase(Locale.ROOT) + className.substring(1);
 
-        boolean recordIndexFlag = "com.roubao.web.common.logrecord.DefaultLogRecordStrategy".equals(fullClassName);
+        boolean recordIndexFlag = DefaultLogRecordStrategy.class.getName().equals(fullClassName);
         Object obj = null;
         if (recordIndexFlag) {
             DefaultLogRecordStrategy defaultLogRecordStrategy = new DefaultLogRecordStrategy();

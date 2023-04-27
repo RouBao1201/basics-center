@@ -1,5 +1,6 @@
 package com.roubao.web.common.logrecord;
 
+import com.roubao.common.exception.handler.ExceptionPublisher;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -33,5 +34,6 @@ public abstract class AbstractLogRecordStrategy<T> implements LogRecordStrategy<
      */
     public void exceptionHandler(LogRecordDTO<T> recordData, Exception e) {
         log.error("LogRecordStrategy Exception. RecordData:{}. ErrorMessage:{}.", recordData, e.getMessage(), e);
+        ExceptionPublisher.publishServiceException("AbstractLogRecordStrategy ==> Log record error. ErrorMessage:" + e);
     };
 }
