@@ -7,7 +7,7 @@ package com.roubao.common.constants;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/3
  **/
-public final class NumberConst {
+public final class NumberConstant {
     /**
      * 常量0
      */
@@ -78,7 +78,7 @@ public final class NumberConst {
      */
     public static final int ONE_THOUSAND_AND_TWENTY_FOUR = 1024;
 
-    private NumberConst() {
+    private NumberConstant() {
 
     }
 }

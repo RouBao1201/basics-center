@@ -1,6 +1,6 @@
 package com.roubao.common.utils;
 
-import com.roubao.common.constants.RegexConst;
+import com.roubao.common.constants.RegexConstant;
 
 import java.util.regex.Pattern;
 
@@ -20,7 +20,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isMobileSimple(CharSequence input) {
-        return isMatch(RegexConst.REGEX_MOBILE_SIMPLE, input);
+        return isMatch(RegexConstant.REGEX_MOBILE_SIMPLE, input);
     }
 
     /**
@@ -30,7 +30,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isMobileExact(CharSequence input) {
-        return isMatch(RegexConst.REGEX_MOBILE_EXACT, input);
+        return isMatch(RegexConstant.REGEX_MOBILE_EXACT, input);
     }
 
     /**
@@ -40,7 +40,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isTel(CharSequence input) {
-        return isMatch(RegexConst.REGEX_TEL, input);
+        return isMatch(RegexConstant.REGEX_TEL, input);
     }
 
     /**
@@ -50,7 +50,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isIDCard15(CharSequence input) {
-        return isMatch(RegexConst.REGEX_ID_CARD15, input);
+        return isMatch(RegexConstant.REGEX_ID_CARD15, input);
     }
 
     /**
@@ -60,7 +60,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isIDCard18(CharSequence input) {
-        return isMatch(RegexConst.REGEX_ID_CARD18, input);
+        return isMatch(RegexConstant.REGEX_ID_CARD18, input);
     }
 
     /**
@@ -70,7 +70,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isEmail(CharSequence input) {
-        return isMatch(RegexConst.REGEX_EMAIL, input);
+        return isMatch(RegexConstant.REGEX_EMAIL, input);
     }
 
     /**
@@ -80,7 +80,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isURL(CharSequence input) {
-        return isMatch(RegexConst.REGEX_URL, input);
+        return isMatch(RegexConstant.REGEX_URL, input);
     }
 
     /**
@@ -90,7 +90,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isZH(CharSequence input) {
-        return isMatch(RegexConst.REGEX_ZH, input);
+        return isMatch(RegexConstant.REGEX_ZH, input);
     }
 
     /**
@@ -103,7 +103,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isUsername(CharSequence input) {
-        return isMatch(RegexConst.REGEX_USERNAME, input);
+        return isMatch(RegexConstant.REGEX_USERNAME, input);
     }
 
     /**
@@ -113,7 +113,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isDate(CharSequence input) {
-        return isMatch(RegexConst.REGEX_DATE, input);
+        return isMatch(RegexConstant.REGEX_DATE, input);
     }
 
     /**
@@ -123,7 +123,7 @@ public class RegexUtil {
      * @return 验证结果
      */
     public static boolean isIP(CharSequence input) {
-        return isMatch(RegexConst.REGEX_IP, input);
+        return isMatch(RegexConstant.REGEX_IP, input);
     }
 
     public static boolean isMatch(String regex, CharSequence input) {

@@ -7,7 +7,7 @@ package com.roubao.common.constants;
  * @copyright 2022-2099 SongYanBin All Rights Reserved.
  * @since 2022/11/28
  **/
-public final class RegexConst {
+public final class RegexConstant {
     /**
      * 正则：手机号（简单）
      */
@@ -133,7 +133,12 @@ public final class RegexConst {
      */
     public static final String REGEX_NEGATIVE_FLOAT = "^-[1-9]\\d*\\.\\d*|-0\\.\\d*[1-9]\\d*$";
 
-    private RegexConst() {
+    /**
+     * 是否包含中文
+     */
+    public static final String REGEX_CONTAIN_CHINESE = "[\u4e00-\u9fa5]";
+
+    private RegexConstant() {
 
     }
 }

@@ -1,6 +1,6 @@
 package com.roubao.common.sensitive.strategy.impl;
 
-import com.roubao.common.constants.StrConst;
+import com.roubao.common.constants.StringConstant;
 import com.roubao.common.sensitive.strategy.AbstractSensitiveStrategy;
 
 /**
@@ -13,7 +13,7 @@ import com.roubao.common.sensitive.strategy.AbstractSensitiveStrategy;
 public class EmailSensitiveStrategy extends AbstractSensitiveStrategy {
     @Override
     public String process(String sourceStr) {
-        int i = sourceStr.indexOf(StrConst.AT);
+        int i = sourceStr.indexOf(StringConstant.AT);
         String atSubStr = sourceStr.substring(i);
         // sourceStr.replaceAll("(^\\w)[^@]*(@.*$)", "$1****$2")
         String symbol = this.forAssembleSymbol(sourceStr.length() - atSubStr.length() - 1);

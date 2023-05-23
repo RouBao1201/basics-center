@@ -57,17 +57,16 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     /**
      * 根据bean名称获取bean
      *
-     * @param beanName bean名称
+     * @param beanName       bean名称
      * @param ignoreNotFound 是否忽略容器中是否含有bean
      * @return bean
      */
     public static Object getBean(String beanName, boolean ignoreNotFound) {
         try {
             return getApplicationContext().getBean(beanName);
-        }
-        catch (NoSuchBeanDefinitionException e) {
+        } catch (NoSuchBeanDefinitionException e) {
             log.error("SpringContextHolder => The Bean is not found. [beanName:{}, ignoreNotFound:{}]. ErrorMessage:"
-                + e.getMessage() + ". ", beanName, ignoreNotFound);
+                    + e.getMessage() + ". ", beanName, ignoreNotFound);
             if (ignoreNotFound) {
                 return null;
             }
@@ -79,7 +78,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      * 根据bean类型获取bean
      *
      * @param beanClass bean类型
-     * @param <T> bean类型
+     * @param <T>       bean类型
      * @return bean
      */
     public static <T> T getBean(Class<T> beanClass) {
@@ -89,20 +88,19 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     /**
      * 根据bean类型获取bean
      *
-     * @param beanClass bean类型
+     * @param beanClass      bean类型
      * @param ignoreNotFound 是否忽略容器中是否含有bean
-     * @param <T> bean类型
+     * @param <T>            bean类型
      * @return bean
      */
     public static <T> T getBean(Class<T> beanClass, boolean ignoreNotFound) {
         try {
             return getApplicationContext().getBean(beanClass);
-        }
-        catch (NoSuchBeanDefinitionException e) {
+        } catch (NoSuchBeanDefinitionException e) {
             log.error(
-                "SpringContextHolder => SpringContextHolder => The Bean is not found. [beanClass:{}, ignoreNotFound:{}]. ErrorMessage:"
-                    + e.getMessage() + ". ",
-                beanClass, ignoreNotFound);
+                    "SpringContextHolder => SpringContextHolder => The Bean is not found. [beanClass:{}, ignoreNotFound:{}]. ErrorMessage:"
+                            + e.getMessage() + ". ",
+                    beanClass, ignoreNotFound);
             if (ignoreNotFound) {
                 return null;
 
@@ -115,8 +113,8 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      * 根据bean名称和bean类型获取bean
      *
      * @param beanName bean名称
-     * @param clazz bean类型
-     * @param <T> bean类型
+     * @param clazz    bean类型
+     * @param <T>      bean类型
      * @return bean
      */
     public static <T> T getBean(String beanName, Class<T> clazz) {
@@ -126,19 +124,18 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
     /**
      * 根据bean名称和bean类型获取bean
      *
-     * @param beanName bean名称
-     * @param beanClass bean类型
+     * @param beanName       bean名称
+     * @param beanClass      bean类型
      * @param ignoreNotFound ignoreNotFound
+     * @param <T>            bean类型
      * @return bean
-     * @param <T> bean类型
      */
     public static <T> T getBean(String beanName, Class<T> beanClass, boolean ignoreNotFound) {
         try {
             return getApplicationContext().getBean(beanClass);
-        }
-        catch (NoSuchBeanDefinitionException e) {
+        } catch (NoSuchBeanDefinitionException e) {
             log.error("SpringContextHolder => The Bean is not found. [beanName:{}, beanClass:{}, ignoreNotFound:"
-                + ignoreNotFound + "]. ErrorMessage:" + e.getMessage() + ". ", beanName, beanClass);
+                    + ignoreNotFound + "]. ErrorMessage:" + e.getMessage() + ". ", beanName, beanClass);
             if (ignoreNotFound) {
                 return null;
             }
@@ -150,7 +147,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      * 根据bean类型获取所有bean
      *
      * @param beanClass bean类型
-     * @param <T> 枚举
+     * @param <T>       枚举
      * @return bean
      */
     public static <T> Map<String, T> getBeanMapForType(Class<T> beanClass) {
@@ -161,7 +158,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
      * 根据bean类型获取所有bean
      *
      * @param beanClass bean类型
-     * @param <T> 枚举
+     * @param <T>       枚举
      * @return bean
      */
     public static <T> List<T> getBeanListForType(Class<T> beanClass) {
@@ -175,7 +172,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
     /**
      * 是否存在bean
-     * 
+     *
      * @param beanName bean名称
      * @return boolean
      */
@@ -185,7 +182,7 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
     /**
      * 根据bean名称获取bean类型
-     * 
+     *
      * @param beanName bean名称
      * @return bean类型
      */
@@ -195,10 +192,10 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
     /**
      * 根据bean类型获取bean名称
-     * 
+     *
      * @param beanClass bean类型
+     * @param <T>       bean类型泛型
      * @return bean名称集合
-     * @param <T> bean类型泛型
      */
     public static <T> String[] getBeanNamesForType(Class<T> beanClass) {
         return getApplicationContext().getBeanNamesForType(beanClass);
@@ -206,18 +203,17 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
     /**
      * 注册单例bean（不存在才注册）
-     * 
+     *
      * @param beanName bean名称
-     * @param beanObj bean对象
+     * @param beanObj  bean对象
+     * @param <T>      bean对象类型泛型
      * @return bean对象
-     * @param <T> bean对象类型泛型
      */
     public static <T> T registerSingletonBeanIfAbsent(String beanName, T beanObj) {
         T bean;
         if (containsBean(beanName)) {
             bean = (T) getBean(beanName, beanObj.getClass());
-        }
-        else {
+        } else {
             bean = registerSingletonBean(beanName, beanObj);
         }
         return bean;
@@ -225,15 +221,15 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
     /**
      * 注册单例bean
-     * 
+     *
      * @param beanName bean名称
-     * @param beanObj bean对象
+     * @param beanObj  bean对象
+     * @param <T>      bean对象类型泛型
      * @return 注册的bean对象
-     * @param <T> bean对象类型泛型
      */
     public static <T> T registerSingletonBean(String beanName, T beanObj) {
         DefaultListableBeanFactory beanFactory = (DefaultListableBeanFactory) getApplicationContext()
-            .getAutowireCapableBeanFactory();
+                .getAutowireCapableBeanFactory();
         beanFactory.registerSingleton(beanName, beanObj);
         beanFactory.autowireBean(beanObj);
         return (T) beanFactory.getBean(beanName, beanObj.getClass());
@@ -241,12 +237,23 @@ public class SpringContextHolder implements ApplicationContextAware, DisposableB
 
     /**
      * 判断是否单例bean
-     * 
+     *
      * @param beanName bean名称
      * @return 是否单例bean
      */
     public static boolean isSingletonBean(String beanName) {
         return getApplicationContext().isSingleton(beanName);
+    }
+
+
+    /**
+     * 判断是否多例bean
+     *
+     * @param beanName bean名称
+     * @return 是否多例bean
+     */
+    public static boolean isPrototypeBean(String beanName) {
+        return getApplicationContext().isPrototype(beanName);
     }
 
     /**

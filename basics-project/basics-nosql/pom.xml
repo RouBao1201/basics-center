@@ -14,8 +14,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.roubao.nosql</groupId>
-            <artifactId>nosql</artifactId>
+            <groupId>com.roubao.nosql.redis</groupId>
+            <artifactId>redis</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>

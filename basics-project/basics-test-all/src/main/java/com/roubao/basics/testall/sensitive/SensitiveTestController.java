@@ -30,4 +30,41 @@ public class SensitiveTestController {
         userInfoDTO.setAge(18);
         return userInfoDTO;
     }
+
+    public static void main(String[] args) {
+        long time = (24 * 60 * 60 * 1000) + (1000 * 60 * 25) + (1000 * 56);
+        System.out.println(formatToHhMmSs(time));
+    }
+
+    private static String formatToHhMmSs(long ms) {
+        String hoursStr;
+        String minutesStr;
+        String secondsStr;
+
+        // 时
+        long hour = (ms / 1000) / 3600;
+        if (hour < 10) {
+            hoursStr = "0" + hour;
+        }
+        else {
+            hoursStr = hour + "";
+        }
+        // 分
+        long minute = ((ms / 1000) % 3600) / 60;
+        if (minute < 10) {
+            minutesStr = "0" + minute;
+        }
+        else {
+            minutesStr = minute + "";
+        }
+        // 秒
+        long second = (ms / 1000) % 60;
+        if (second < 10) {
+            secondsStr = "0" + second;
+        }
+        else {
+            secondsStr = second + "";
+        }
+        return hoursStr + ":" + minutesStr + ":" + secondsStr;
+    }
 }

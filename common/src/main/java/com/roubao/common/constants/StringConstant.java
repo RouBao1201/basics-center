@@ -5,7 +5,7 @@ package com.roubao.common.constants;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/4
  **/
-public final class StrConst {
+public final class StringConstant {
     /**
      * 空串
      */
@@ -56,7 +56,7 @@ public final class StrConst {
      */
     public static final String LINE_SEPARATOR = System.lineSeparator();
 
-    private StrConst() {
+    private StringConstant() {
 
     }
 }

@@ -1,7 +1,7 @@
 package com.roubao.common.sensitive.strategy;
 
 import cn.hutool.core.util.StrUtil;
-import com.roubao.common.constants.StrConst;
+import com.roubao.common.constants.StringConstant;
 
 /**
  * 脱敏引擎
@@ -52,6 +52,6 @@ public abstract class AbstractSensitiveStrategy {
      * @return 默认为: *
      */
     public String symbol() {
-        return StrConst.ASTERISK;
+        return StringConstant.ASTERISK;
     }
 }

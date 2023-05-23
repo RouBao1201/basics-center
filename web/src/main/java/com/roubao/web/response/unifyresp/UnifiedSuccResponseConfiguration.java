@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.roubao.web.response.dto.RespResult;
-import com.roubao.web.response.utils.RespHelper;
 
 /**
  * 统一成功响应配置
- * 
+ *
  * @author SongYanBin
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/4/19
@@ -36,8 +35,8 @@ public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Obje
 
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType,
-        Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest,
-        ServerHttpResponse serverHttpResponse) {
+                                  Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest,
+                                  ServerHttpResponse serverHttpResponse) {
         // 判断类和方法上是否存在跳过统一响应注解
         SkipUnifyResp skipUnifyRespForMethod = methodParameter.getMethodAnnotation(SkipUnifyResp.class);
         SkipUnifyResp skipUnifyRespForClass = methodParameter.getDeclaringClass().getAnnotation(SkipUnifyResp.class);
@@ -51,22 +50,19 @@ public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Obje
 
         EnableCustomUnifiedSuccResponse.RunMode runMode = iUnifiedResponseProperties.getRunMode();
         if (runMode == EnableCustomUnifiedSuccResponse.RunMode.AUTO) {
-            return RespHelper.success(obj);
-        }
-        else {
+            return RespResult.success(obj);
+        } else {
             UnifySuccResp unifyRespForMethod = methodParameter.getMethodAnnotation(UnifySuccResp.class);
             if (unifyRespForMethod == null) {
                 UnifySuccResp unifyRespForClass = methodParameter.getDeclaringClass()
-                    .getAnnotation(UnifySuccResp.class);
+                        .getAnnotation(UnifySuccResp.class);
                 if (unifyRespForClass == null) {
                     return obj;
+                } else {
+                    return RespResult.success(unifyRespForClass.code(), unifyRespForClass.message(), obj);
                 }
-                else {
-                    return RespHelper.success(unifyRespForClass.code(), unifyRespForClass.message(), obj);
-                }
-            }
-            else {
-                return RespHelper.success(unifyRespForMethod.code(), unifyRespForMethod.message(), obj);
+            } else {
+                return RespResult.success(unifyRespForMethod.code(), unifyRespForMethod.message(), obj);
             }
         }
     }
