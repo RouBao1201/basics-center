@@ -18,17 +18,17 @@ public class ElasticSearchProperties {
     /**
      * host ip 地址（集群）
      */
-    private String hosts = "localhost:9200";
+    private String hosts = "127.0.0.1:9200";
 
     /**
      * 用户名
      */
-    private String userName;
+    private String username = "elastic";
 
     /**
      * 密码
      */
-    private String password;
+    private String password = "elastic";
 
     /**
      * 请求方式

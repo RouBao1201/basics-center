@@ -59,7 +59,7 @@ public class ElasticSearchAutoConfiguration {
         // 设置用户名、密码
         CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
         credentialsProvider.setCredentials(AuthScope.ANY,
-                new UsernamePasswordCredentials(elasticSearchProperties.getUserName(), elasticSearchProperties.getPassword()));
+                new UsernamePasswordCredentials(elasticSearchProperties.getUsername(), elasticSearchProperties.getPassword()));
 
         // 连接延时配置
         builder.setRequestConfigCallback(requestConfigBuilder -> {
