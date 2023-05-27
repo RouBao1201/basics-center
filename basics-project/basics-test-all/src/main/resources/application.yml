@@ -35,3 +35,8 @@ mybatis-plus:
 unify-response:
   configuration:
     run-mode: manual
+elasticsearch:
+  configuration:
+    hosts: 127.0.0.1:9200
+    username: elastic
+    password: elastic

@@ -1,5 +1,6 @@
 package com.roubao.nosql.elasticsearch.autoconfiguration;
 
+import com.roubao.nosql.elasticsearch.bean.ElasticSearchAdapter;
 import com.roubao.nosql.elasticsearch.properties.ElasticSearchProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.http.HttpHost;
@@ -77,5 +78,11 @@ public class ElasticSearchAutoConfiguration {
             return httpClientBuilder;
         });
         return new RestHighLevelClient(builder);
+    }
+
+    @Bean("elasticSearchAdapter")
+    @ConditionalOnMissingBean(ElasticSearchAdapter.class)
+    public ElasticSearchAdapter elasticSearchAdapter() {
+        return new ElasticSearchAdapter(restHighLevelClient());
     }
 }

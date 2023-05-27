@@ -43,7 +43,7 @@ public class ElasticSearchProperties {
     /**
      * 连接超时时间
      */
-    private int connectTimeOut = 1000;
+    private int connectTimeOut = 5000;
 
     /**
      * socket 连接超时时间
@@ -53,7 +53,7 @@ public class ElasticSearchProperties {
     /**
      * 请求超时时间
      */
-    private int connectionRequestTimeOut = 1000;
+    private int connectionRequestTimeOut = 5000;
 
     /**
      * 最大连接数
