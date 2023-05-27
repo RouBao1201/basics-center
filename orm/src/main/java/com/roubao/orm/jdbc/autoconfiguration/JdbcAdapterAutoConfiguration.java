@@ -19,9 +19,16 @@ import com.roubao.orm.jdbc.bean.JdbcAdapter;
 @Configuration
 public class JdbcAdapterAutoConfiguration {
 
+    private static final String BANNER_I_JDBC_ADAPTER =
+            "   ___        _  ___   ___   ___     ___  ___   ___  ___  _____  ___  ___  " + System.lineSeparator() +
+            "  |_ _|    _ | ||   \\ | _ ) / __|   /   \\|   \\ /   \\| _ \\|_   _|| __|| _ \\ " + System.lineSeparator() +
+            "   | |    | || || |) || _ \\| (__    | - || |) || - ||  _/  | |  | _| |   / " + System.lineSeparator() +
+            "  |___|    \\__/ |___/ |___/ \\___|   |_|_||___/ |_|_||_|    |_|  |___||_|_\\ ";
+
     @Bean
     @ConditionalOnMissingBean(JdbcAdapter.class)
     public JdbcAdapter jdbcAdaptor(JdbcTemplate jdbcTemplate) {
+        log.info(System.lineSeparator() + BANNER_I_JDBC_ADAPTER+ System.lineSeparator());
         log.info("JdbcAdapterAutoConfiguration ==> Start custom autoConfiguration [JdbcAdapter] bean.");
         return new JdbcAdapter(jdbcTemplate);
     }

@@ -31,6 +31,13 @@ import java.util.Set;
 @EnableSwagger2
 @EnableConfigurationProperties(SwaggerProperties.class)
 public class SwaggerAutoconfiguration {
+
+    private static final String BANNER_I_SWAGGER_AUTO =
+            "   ___     ___ __      __ ___   ___   ___  ___  ___      ___  _   _  _____   ___  " + System.lineSeparator() +
+            "  |_ _|   / __|\\ \\    / //   \\ / __| / __|| __|| _ \\    /   \\| | | ||_   _| / _ \\ " + System.lineSeparator() +
+            "   | |    \\__ \\ \\ \\/\\/ / | - || (_ || (_ || _| |   /    | - || |_| |  | |  | (_) |" + System.lineSeparator() +
+            "  |___|   |___/  \\_/\\_/  |_|_| \\___| \\___||___||_|_\\    |_|_| \\___/  _|_|_  \\___/ ";
+
     private final SwaggerProperties swaggerProperties;
 
     public SwaggerAutoconfiguration(SwaggerProperties swaggerProperties) {
@@ -40,6 +47,7 @@ public class SwaggerAutoconfiguration {
     @Bean("docket")
     @ConditionalOnMissingBean(Docket.class)
     public Docket docket() {
+        log.info(System.lineSeparator() + BANNER_I_SWAGGER_AUTO + System.lineSeparator());
         log.info("SwaggerAutoconfiguration ==> Start custom autoConfiguration [Docket] bean.");
         log.info("SwaggerAutoconfiguration ==> SwaggerProperties:[{}].", swaggerProperties);
         return new Docket(DocumentationType.SWAGGER_2)
