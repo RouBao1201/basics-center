@@ -1,4 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
     com.roubao.web.rest.autoconfiguration.RestAdapterAutoConfiguration,\
   com.roubao.web.rest.autoconfiguration.RestTemplateAutoConfiguration,\
-  com.roubao.web.common.logrecord.LogRecordAspectAutoConfiguration
+  com.roubao.web.common.logrecord.LogRecordAspectAutoConfiguration,\
+  com.roubao.web.swagger.autoconfiguration.SwaggerAutoconfiguration
