@@ -25,9 +25,9 @@ public class JdbcAdapterAutoConfiguration {
             "   | |    | || || |) || _ \\| (__    | - || |) || - ||  _/  | |  | _| |   / " + System.lineSeparator() +
             "  |___|    \\__/ |___/ |___/ \\___|   |_|_||___/ |_|_||_|    |_|  |___||_|_\\ ";
 
-    @Bean
+    @Bean("jdbcAdapter")
     @ConditionalOnMissingBean(JdbcAdapter.class)
-    public JdbcAdapter jdbcAdaptor(JdbcTemplate jdbcTemplate) {
+    public JdbcAdapter jdbcAdapter(JdbcTemplate jdbcTemplate) {
         log.info(System.lineSeparator() + BANNER_I_JDBC_ADAPTER+ System.lineSeparator());
         log.info("JdbcAdapterAutoConfiguration ==> Start custom autoConfiguration [JdbcAdapter] bean.");
         return new JdbcAdapter(jdbcTemplate);

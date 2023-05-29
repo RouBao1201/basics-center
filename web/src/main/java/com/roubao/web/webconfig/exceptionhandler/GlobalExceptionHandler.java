@@ -1,9 +1,11 @@
 package com.roubao.web.webconfig.exceptionhandler;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.sql.SQLException;
-
+import com.roubao.common.exception.enums.ExceptionCode;
+import com.roubao.common.exception.model.BaseException;
+import com.roubao.common.exception.model.BaseRuntimeException;
+import com.roubao.common.exception.model.ServiceException;
+import com.roubao.web.response.dto.RespResult;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.ConversionNotSupportedException;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
@@ -12,13 +14,9 @@ import org.springframework.http.converter.HttpMessageNotWritableException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import com.roubao.common.exception.enums.ExceptionCode;
-import com.roubao.common.exception.model.BaseException;
-import com.roubao.common.exception.model.BaseRuntimeException;
-import com.roubao.common.exception.model.ServiceException;
-import com.roubao.web.response.dto.RespResult;
-
-import lombok.extern.slf4j.Slf4j;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.sql.SQLException;
 
 /**
  * 全局异常处理
@@ -30,6 +28,16 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
+    private static final String I_GLOBAL_EXCEPTION =
+            "   ___      ___  _      ___   ___  ___  _        ___ __  __  ___  ___  ___  _____  ___   ___   _  _   " + System.lineSeparator() +
+            "  |_ _|    / __|| |    / _ \\ | _ )/   \\| |      | __|\\ \\/ / / __|| __|| _ \\|_   _||_ _| / _ \\ | \\| |  " + System.lineSeparator() +
+            "   | |    | (_ || |__ | (_) || _ \\| - || |__    | _|  >  < | (__ | _| |  _/  | |   | | | (_) || .` |  " + System.lineSeparator() +
+            "  |___|    \\___||____| \\___/ |___/|_|_||____|   |___|/_/\\_\\ \\___||___||_|    |_|  |___| \\___/ |_|\\_|";
+
+    public GlobalExceptionHandler() {
+        log.info(System.lineSeparator() + I_GLOBAL_EXCEPTION + System.lineSeparator());
+    }
+
     /**
      * 空指针异常
      */

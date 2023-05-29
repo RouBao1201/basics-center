@@ -20,6 +20,12 @@ import org.springframework.context.annotation.Configuration;
 @EnableConfigurationProperties(ThreadPoolProperties.class)
 public class ThreadPoolAutoConfiguration {
 
+    private static final String BANNER_I_THREADPOOL_AUTO =
+            "   ___     _____  _  _  ___  ___  ___  ___   ___   ___    ___   _        ___  _   _  _____   ___" + System.lineSeparator() +
+            "  |_ _|   |_   _|| || || _ \\| __|/   \\|   \\ | _ \\ / _ \\  / _ \\ | |      /   \\| | | ||_   _| / _ \\" + System.lineSeparator() +
+            "   | |      | |  | __ ||   /| _| | - || |) ||  _/| (_) || (_) || |__    | - || |_| |  | |  | (_) |" + System.lineSeparator() +
+            "  |___|     |_|  |_||_||_|_\\|___||_|_||___/ |_|   \\___/  \\___/ |____|   |_|_| \\___/   |_|   \\___/";
+
     private final ThreadPoolProperties threadPoolProperties;
 
     public ThreadPoolAutoConfiguration(ThreadPoolProperties threadPoolProperties) {
@@ -29,6 +35,7 @@ public class ThreadPoolAutoConfiguration {
     @Bean("threadPoolHandler")
     @ConditionalOnMissingBean(ThreadPoolHandler.class)
     public ThreadPoolHandler threadPoolHolder() {
+        log.info(System.lineSeparator() + BANNER_I_THREADPOOL_AUTO + System.lineSeparator());
         log.info("ThreadPoolAutoConfiguration ==> Start custom autoConfiguration [ThreadPoolHandler] bean.");
         log.info("ThreadPoolAutoConfiguration ==> ThreadPoolProperties configuration: {}.", threadPoolProperties);
         return new ThreadPoolHandler(threadPoolProperties);

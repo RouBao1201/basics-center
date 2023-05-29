@@ -1,5 +1,6 @@
 package com.roubao.web.response.unifyresp;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -18,13 +19,21 @@ import com.roubao.web.response.dto.RespResult;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/4/19
  **/
+@Slf4j
 @ControllerAdvice
 @EnableConfigurationProperties(IUnifiedResponseProperties.class)
 public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Object> {
 
+    private static final String UNIFY_RESPONSE =
+            "   ___     _   _  _  _  ___  ___ __   __    ___  ___  ___  ___   ___   _  _  ___  ___ " + System.lineSeparator() +
+            "  |_ _|   | | | || \\| ||_ _|| __|\\ \\ / /   | _ \\| __|/ __|| _ \\ / _ \\ | \\| |/ __|| __|" + System.lineSeparator() +
+            "   | |    | |_| || .` | | | | _|  \\ V /    |   /| _| \\__ \\|  _/| (_) || .` |\\__ \\| _|" + System.lineSeparator() +
+            "  |___|    \\___/ |_|\\_||___||_|    |_|     |_|_\\|___||___/|_|   \\___/ |_|\\_||___/|___|";
+
     private final IUnifiedResponseProperties iUnifiedResponseProperties;
 
     public UnifiedSuccResponseConfiguration(IUnifiedResponseProperties iUnifiedResponseProperties) {
+        log.info(System.lineSeparator() + UNIFY_RESPONSE + System.lineSeparator());
         this.iUnifiedResponseProperties = iUnifiedResponseProperties;
     }
 

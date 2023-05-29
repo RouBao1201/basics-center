@@ -31,7 +31,13 @@ import java.util.List;
 @EnableConfigurationProperties(ElasticSearchProperties.class)
 public class ElasticSearchAutoConfiguration {
 
-    private ElasticSearchProperties elasticSearchProperties;
+    private static final String BANNER_I_ELASTICSEARCH =
+            "   ___     ___  _     ___  ___  _____  ___   ___  ___  ___  ___  ___   ___  _  _ " + System.lineSeparator() +
+            "  |_ _|   | __|| |   /   \\/ __||_   _||_ _| / __|/ __|| __|/   \\| _ \\ / __|| || |" + System.lineSeparator() +
+            "   | |    | _| | |__ | - |\\__ \\  | |   | | | (__ \\__ \\| _| | - ||   /| (__ | __ |" + System.lineSeparator() +
+            "  |___|   |___||____||_|_||___/  |_|  |___| \\___||___/|___||_|_||_|_\\ \\___||_||_|";
+
+    private final ElasticSearchProperties elasticSearchProperties;
 
     public ElasticSearchAutoConfiguration(ElasticSearchProperties elasticSearchProperties) {
         this.elasticSearchProperties = elasticSearchProperties;
@@ -40,6 +46,7 @@ public class ElasticSearchAutoConfiguration {
     @Bean("restHighLevelClient")
     @ConditionalOnMissingBean(RestHighLevelClient.class)
     public RestHighLevelClient restHighLevelClient() {
+        log.info(System.lineSeparator() + BANNER_I_ELASTICSEARCH + System.lineSeparator());
         log.info("ElasticSearchAutoConfiguration ==> Start custom autoConfiguration [RestHighLevelClient] bean.");
         log.info("ElasticSearchAutoConfiguration ==> ElasticSearchProperties: {}.", elasticSearchProperties);
         // 拆分地址
