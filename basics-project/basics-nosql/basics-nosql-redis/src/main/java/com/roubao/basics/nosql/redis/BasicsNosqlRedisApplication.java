@@ -4,6 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
+ * Redis服务启动类
+ *
  * @author SongYanBin
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/5/24

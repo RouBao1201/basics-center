@@ -11,7 +11,7 @@ import java.util.concurrent.TimeUnit;
  * @copyright 2023-2099 SongYanBin All Rights Reserved.
  * @since 2023/4/3
  **/
-@ConfigurationProperties(prefix = "okhttp.configuration")
+@ConfigurationProperties(prefix = "okhttp")
 public class OKHttpProperties {
     /**
      * 最大空闲连接数

@@ -16,6 +16,7 @@
     <modules>
         <module>basics-nosql-redis</module>
         <module>basics-nosql-elasticsearch</module>
+        <module>basics-nosql-mongodb</module>
     </modules>
 
 </project>

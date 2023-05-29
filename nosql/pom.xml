@@ -12,6 +12,7 @@
     <modules>
         <module>redis</module>
         <module>elasticsearch</module>
+        <module>mongodb</module>
     </modules>
 
     <properties>

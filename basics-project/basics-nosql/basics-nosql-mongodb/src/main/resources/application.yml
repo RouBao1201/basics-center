@@ -1,0 +1,12 @@
+server:
+  port: 8099
+spring:
+  application:
+    name: basics-nosql-mongo-application
+  data:
+    mongodb:
+      authentication-database: roubaoAdmin
+      host: 127.0.0.1
+      port: 27017
+      username: roubaoAdmin
+      password: 123456

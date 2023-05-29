@@ -13,22 +13,22 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  **/
 @Data
 @ToString
-@ConfigurationProperties(prefix = "elasticsearch.configuration")
+@ConfigurationProperties(prefix = "elasticsearch")
 public class ElasticSearchProperties {
     /**
      * host ip 地址（集群）
      */
-    private String hosts = "127.0.0.1:9200";
+    private String hosts;
 
     /**
      * 用户名
      */
-    private String username = "elastic";
+    private String username;
 
     /**
      * 密码
      */
-    private String password = "elastic";
+    private String password;
 
     /**
      * 请求方式
@@ -38,7 +38,7 @@ public class ElasticSearchProperties {
     /**
      * es集群名称
      */
-    private String clusterName = "roubao-cluster";
+    private String clusterName;
 
     /**
      * 连接超时时间
