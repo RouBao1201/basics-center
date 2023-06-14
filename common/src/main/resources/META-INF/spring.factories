@@ -1,4 +1,4 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
     com.roubao.common.thread.autoconfiguration.ThreadPoolAutoConfiguration,\
   com.roubao.common.security.autoconfiguration.SecurityAutoConfiguration,\
-  com.roubao.common.spring.holder.SpringContextHolderAutoConfiguration
+  com.roubao.common.spring.autoconfiguration.SpringContextHolderAutoConfiguration

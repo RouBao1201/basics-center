@@ -1,4 +1,4 @@
-package com.roubao.common.spring.holder;
+package com.roubao.common.spring.bean;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,12 +2,13 @@ package com.roubao.orm.jdbc.bean;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.springframework.jdbc.core.BatchPreparedStatementSetter;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import lombok.extern.slf4j.Slf4j;
@@ -33,27 +34,51 @@ public class JdbcAdapter {
         this.jdbcTemplate = jdbcTemplate;
     }
 
+    public JdbcTemplate getJdbcTemplate() {
+        return this.jdbcTemplate;
+    }
+
+    public Long queryCount(String sql) {
+        return jdbcTemplate.queryForObject(sql, Long.class);
+    }
+
+    public <T> T queryForObject(String sql, Class<T> objClass, Object... args) {
+        return jdbcTemplate.queryForObject(sql, objClass, args);
+    }
+
+    public List<Map<String,Object>> queryForList(String sql, Object... args) {
+        return jdbcTemplate.queryForList(sql, args);
+    }
+
+    public <T> List<T> queryForList(String sql, Class<T> objClass, Object... args) {
+        return jdbcTemplate.query(sql, new BeanPropertyRowMapper<T>(objClass), args);
+    }
+
+    public Map<String, Object> queryForMap(String sql) {
+        return jdbcTemplate.queryForMap(sql);
+    }
+
     /**
      * JdbcTemplate批量插入【分段提交】
      *
-     * @param sql sql
-     * @param dataList 数据集合
+     * @param sql        sql
+     * @param dataList   数据集合
      * @param submitSize 批量提交数量
-     * @param consumer 参数设置回调
-     * @param <T> 数据类型枚举
+     * @param consumer   参数设置回调
+     * @param <T>        数据类型枚举
      */
     public <T> void batchInsert(String sql, List<T> dataList, int submitSize,
-        DiInjectConsumer<PreparedStatement, T> consumer) {
+                                DiInjectConsumer<PreparedStatement, T> consumer) {
         batchUpdate(this.jdbcTemplate, sql, dataList, submitSize, consumer);
     }
 
     /**
      * JdbcTemplate批量插入【分段提交】
      *
-     * @param sql sql
+     * @param sql      sql
      * @param dataList 数据集合
      * @param consumer 参数设置回调
-     * @param <T> 数据类型枚举
+     * @param <T>      数据类型枚举
      */
     public <T> void batchInsert(String sql, List<T> dataList, DiInjectConsumer<PreparedStatement, T> consumer) {
         batchUpdate(this.jdbcTemplate, sql, dataList, DEFAULT_SUBMIT_SIZE, consumer);
@@ -63,9 +88,9 @@ public class JdbcAdapter {
      * 批量修改【分段提交】
      *
      * @param mapperFunc mapper方法
-     * @param list 插入的数据集合
-     * @param size 一次提交的数量
-     * @param <T> 数据枚举
+     * @param list       插入的数据集合
+     * @param size       一次提交的数量
+     * @param <T>        数据枚举
      */
     public <T> void batchInsert(Consumer<List<T>> mapperFunc, List<T> list, int size) {
         batchUpdate(mapperFunc, list, size);
@@ -75,9 +100,9 @@ public class JdbcAdapter {
      * 批量修改（有返回值）【分段提交】
      *
      * @param mapperFunc mapper方法
-     * @param list 插入的数据集合
-     * @param size 一次提交的数量
-     * @param <T> 数据枚举
+     * @param list       插入的数据集合
+     * @param size       一次提交的数量
+     * @param <T>        数据枚举
      */
     public <T> int batchInsert(Function<List<T>, Integer> mapperFunc, List<T> list, int size) {
         return batchUpdate(mapperFunc, list, size);
@@ -87,8 +112,8 @@ public class JdbcAdapter {
      * 批量插入【分段提交】
      *
      * @param mapperFunc mapper方法
-     * @param list 插入的数据集合
-     * @param <T> 数据枚举
+     * @param list       插入的数据集合
+     * @param <T>        数据枚举
      */
     public <T> void batchInsert(Consumer<List<T>> mapperFunc, List<T> list) {
         batchUpdate(mapperFunc, list, DEFAULT_SUBMIT_SIZE);
@@ -98,8 +123,8 @@ public class JdbcAdapter {
      * 批量插入（有返回值）【分段提交】
      *
      * @param mapperFunc mapper方法
-     * @param list 插入的数据集合
-     * @param <T> 数据枚举
+     * @param list       插入的数据集合
+     * @param <T>        数据枚举
      */
     public <T> int batchInsert(Function<List<T>, Integer> mapperFunc, List<T> list) {
         return batchUpdate(mapperFunc, list, DEFAULT_SUBMIT_SIZE);
@@ -108,23 +133,23 @@ public class JdbcAdapter {
     /**
      * JdbcTemplate批量修改【分段提交】
      *
-     * @param sql sql
+     * @param sql      sql
      * @param dataList 数据集合
      * @param consumer 参数设置回调
-     * @param <T> 数据类型枚举
+     * @param <T>      数据类型枚举
      */
     public <T> void batchUpdate(String sql, List<T> dataList, int submitSize,
-        DiInjectConsumer<PreparedStatement, T> consumer) {
+                                DiInjectConsumer<PreparedStatement, T> consumer) {
         batchUpdate(this.jdbcTemplate, sql, dataList, submitSize, consumer);
     }
 
     /**
      * JdbcTemplate批量修改【分段提交】
      *
-     * @param sql sql
+     * @param sql      sql
      * @param dataList 数据集合
      * @param consumer 参数设置回调
-     * @param <T> 数据类型枚举
+     * @param <T>      数据类型枚举
      */
     public <T> void batchUpdate(String sql, List<T> dataList, DiInjectConsumer<PreparedStatement, T> consumer) {
         batchUpdate(this.jdbcTemplate, sql, dataList, DEFAULT_SUBMIT_SIZE, consumer);
@@ -134,8 +159,8 @@ public class JdbcAdapter {
      * 批量修改【分段提交】
      *
      * @param mapperFunc 插入的数据集合
-     * @param list 插入的数据集合
-     * @param <T> 数据枚举
+     * @param list       插入的数据集合
+     * @param <T>        数据枚举
      */
     public <T> void batchUpdate(Consumer<List<T>> mapperFunc, List<T> list) {
         batchUpdate(mapperFunc, list, DEFAULT_SUBMIT_SIZE);
@@ -145,8 +170,8 @@ public class JdbcAdapter {
      * 批量修改（有返回值）【分段提交】
      *
      * @param mapperFunc 插入的数据集合
-     * @param list 插入的数据集合
-     * @param <T> 数据枚举
+     * @param list       插入的数据集合
+     * @param <T>        数据枚举
      */
     public <T> int batchUpdate(Function<List<T>, Integer> mapperFunc, List<T> list) {
         return batchUpdate(mapperFunc, list, DEFAULT_SUBMIT_SIZE);
@@ -156,38 +181,19 @@ public class JdbcAdapter {
      * JdbcTemplate批量修改【分段提交】
      *
      * @param jdbcTemplate jdbcTemplate
-     * @param sql sql
-     * @param dataList 数据集合
-     * @param intervalSize 提交数量
-     * @param consumer 参数设置回调
-     * @param <T> 数据枚举类型
+     * @param sql          sql
+     * @param dataList     数据集合
+     * @param submitSize 提交数量
+     * @param consumer     参数设置回调
+     * @param <T>          数据枚举类型
      */
     public <T> void batchUpdate(JdbcTemplate jdbcTemplate, String sql, List<T> dataList, int submitSize,
-        DiInjectConsumer<PreparedStatement, T> consumer) {
-        int begin = 0;
-        int end = begin + submitSize;
-        int maxSize = dataList.size();
-        List<T> subList = new ArrayList<>();
-
-        if (maxSize < submitSize) {
-            subList.addAll(dataList.subList(begin, maxSize));
-            execute(jdbcTemplate, sql, subList, consumer);
-            subList.clear();
-        }
-        else {
-            while (begin < maxSize) {
-                subList.addAll(dataList.subList(begin, end));
-                execute(jdbcTemplate, sql, subList, consumer);
-                subList.clear();
-                begin = end;
-                end += submitSize;
-            }
-            if (begin > maxSize) {
-                begin -= submitSize;
-                subList.addAll(dataList.subList(begin, maxSize));
-                execute(jdbcTemplate, sql, subList, consumer);
-                subList.clear();
-            }
+                                DiInjectConsumer<PreparedStatement, T> consumer) {
+        int count = dataList.size() % submitSize == 0 ? (dataList.size() / submitSize) : (dataList.size() / submitSize + 1);
+        for (int i = 1; i <= count; i++) {
+            int from = Math.min((i - 1) * submitSize, dataList.size());
+            int to = Math.min((i) * submitSize, dataList.size());
+            batchExecute(jdbcTemplate, sql, dataList.subList(from, to), consumer);
         }
     }
 
@@ -195,23 +201,17 @@ public class JdbcAdapter {
      * 批量插入【分段提交】
      *
      * @param mapperFunc mapper方法
-     * @param list 插入的数据集合
-     * @param size 一次提交的数量
-     * @param <T> 数据枚举
+     * @param dataList   插入的数据集合
+     * @param submitSize 一次提交的数量
+     * @param <T>        数据枚举
      */
-    public <T> void batchUpdate(Consumer<List<T>> mapperFunc, List<T> list, int size) {
-        List<T> subList = new ArrayList<>();
-        for (int i = 1; i < list.size() + 1; i++) {
-            subList.add(list.get(i - 1));
-            if (i % size == 0) {
-                // 执行mapper方法
-                mapperFunc.accept(subList);
-                subList.clear();
-            }
-        }
-        if (subList.size() != 0) {
-            mapperFunc.accept(subList);
-            subList.clear();
+    public <T> void batchUpdate(Consumer<List<T>> mapperFunc, List<T> dataList, int submitSize) {
+        int count = dataList.size() % submitSize == 0 ? (dataList.size() / submitSize) : (dataList.size() / submitSize + 1);
+        for (int i = 1; i <= count; i++) {
+            int from = Math.min((i - 1) * submitSize, dataList.size());
+            int to = Math.min(i * submitSize, dataList.size());
+            // 执行mapper方法
+            mapperFunc.accept(dataList.subList(from, to));
         }
     }
 
@@ -219,30 +219,24 @@ public class JdbcAdapter {
      * 批量修改（有返回值）【分段提交】
      *
      * @param mapperFunc mapper方法
-     * @param list 插入的数据集合
-     * @param size 一次提交的数量
-     * @param <T> 数据枚举
+     * @param dataList   插入的数据集合
+     * @param submitSize 一次提交的数量
+     * @param <T>        数据枚举
      */
-    public <T> int batchUpdate(Function<List<T>, Integer> mapperFunc, List<T> list, int size) {
-        int successSize = 0;
-        List<T> subList = new ArrayList<>();
-        for (int i = 1; i < list.size() + 1; i++) {
-            subList.add(list.get(i - 1));
-            if (i % size == 0) {
-                // 执行mapper方法
-                successSize += mapperFunc.apply(subList);
-                subList.clear();
-            }
+    public <T> int batchUpdate(Function<List<T>, Integer> mapperFunc, List<T> dataList, int submitSize) {
+        int updateSize = 0;
+        int count = dataList.size() % submitSize == 0 ? (dataList.size() / submitSize) : (dataList.size() / submitSize + 1);
+        for (int i = 1; i <= count; i++) {
+            int from = Math.min((i - 1) * submitSize, dataList.size());
+            int to = Math.min(i * submitSize, dataList.size());
+            // 执行mapper方法
+            updateSize += mapperFunc.apply(dataList.subList(from, to));
         }
-        if (subList.size() != 0) {
-            successSize += mapperFunc.apply(subList);
-            subList.clear();
-        }
-        return successSize;
+        return updateSize;
     }
 
-    private <T> void execute(JdbcTemplate jdbcTemplate, String sql, List<T> subList,
-        DiInjectConsumer<PreparedStatement, T> consumer) {
+    private <T> void batchExecute(JdbcTemplate jdbcTemplate, String sql, List<T> subList,
+                                  DiInjectConsumer<PreparedStatement, T> consumer) {
         jdbcTemplate.batchUpdate(sql, new BatchPreparedStatementSetter() {
             // SQL参数设置回调
             @Override

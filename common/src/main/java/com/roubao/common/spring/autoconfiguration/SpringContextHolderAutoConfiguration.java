@@ -1,5 +1,6 @@
-package com.roubao.common.spring.holder;
+package com.roubao.common.spring.autoconfiguration;
 
+import com.roubao.common.spring.bean.SpringContextHolder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;

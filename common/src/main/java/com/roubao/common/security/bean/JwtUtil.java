@@ -85,7 +85,7 @@ public class JwtUtil {
      * @return token
      */
     public String createToken(String userId) {
-        HashMap<String, Object> claims = new HashMap<>(16);
+        Map<String, Object> claims = new HashMap<>(1);
         claims.put("userId", userId);
         return createToken(claims, this.jwtProperties.getSecretKey(), this.jwtProperties.getExpireTime());
     }
@@ -99,7 +99,7 @@ public class JwtUtil {
      * @return token
      */
     public String createToken(String userId, String secretKey, Integer expireTime) {
-        HashMap<String, Object> claims = new HashMap<>(16);
+        Map<String, Object> claims = new HashMap<>(1);
         claims.put("userId", userId);
         return createToken(claims, secretKey, expireTime);
     }

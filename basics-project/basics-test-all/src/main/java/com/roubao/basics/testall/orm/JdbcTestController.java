@@ -3,6 +3,7 @@ package com.roubao.basics.testall.orm;
 import java.util.ArrayList;
 
 import com.roubao.basics.testall.orm.mapper.DictMapper;
+import com.roubao.orm.jdbc.bean.MybatisAdapter;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -33,6 +34,9 @@ public class JdbcTestController {
     @Autowired
     private SqlSessionFactory sqlSessionFactory;
 
+    @Autowired
+    private MybatisAdapter mybatisAdapter;
+
     @PostMapping("/insertDict")
     @Transactional
     public String insertDict(@RequestBody DictInsRequestDTO dto) {
@@ -49,6 +53,8 @@ public class JdbcTestController {
             insDto = new DictInsRequestDTO(String.valueOf(i), i + "XXX");
             insertList.add(insDto);
         }
+
+        mybatisAdapter.batchUpdate(DictMapper.class, insertList, DictMapper::insertDict);
 
         int i = 0;
         long startTime = System.currentTimeMillis();
