@@ -1,5 +1,7 @@
 server:
   port: 8091
+  servlet:
+    context-path: /roubao-basics-test-all
 spring:
   application:
     name: roubao-basics-test-all
@@ -45,7 +47,10 @@ mybatis-plus:
 # 统一响应配置
 ######################################################################################################
 unify-response:
-  run-mode: manual
+  run-mode: auto
+  exclude-uri-contains:
+    - swagger
+    - api-docs
 ######################################################################################################
 # Elasticsearch连接配置
 ######################################################################################################

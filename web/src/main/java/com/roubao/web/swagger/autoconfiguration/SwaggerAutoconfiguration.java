@@ -1,23 +1,25 @@
 package com.roubao.web.swagger.autoconfiguration;
 
-import com.roubao.web.swagger.properties.SwaggerProperties;
-import io.swagger.annotations.Api;
-import lombok.extern.slf4j.Slf4j;
+import java.util.Arrays;
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import com.roubao.web.swagger.properties.SwaggerProperties;
+
+import io.swagger.annotations.Api;
+import lombok.extern.slf4j.Slf4j;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
-import java.util.Arrays;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 /**
  * Swagger自动装配类
@@ -28,16 +30,9 @@ import java.util.Set;
  **/
 @Slf4j
 @Configuration
-@EnableSwagger2
+@EnableOpenApi
 @EnableConfigurationProperties(SwaggerProperties.class)
 public class SwaggerAutoconfiguration {
-
-    private static final String BANNER_I_SWAGGER_AUTO =
-            "   ___     ___ __      __ ___   ___   ___  ___  ___      ___  _   _  _____   ___  " + System.lineSeparator() +
-            "  |_ _|   / __|\\ \\    / //   \\ / __| / __|| __|| _ \\    /   \\| | | ||_   _| / _ \\ " + System.lineSeparator() +
-            "   | |    \\__ \\ \\ \\/\\/ / | - || (_ || (_ || _| |   /    | - || |_| |  | |  | (_) |" + System.lineSeparator() +
-            "  |___|   |___/  \\_/\\_/  |_|_| \\___| \\___||___||_|_\\    |_|_| \\___/  _|_|_  \\___/ ";
-
     private final SwaggerProperties swaggerProperties;
 
     public SwaggerAutoconfiguration(SwaggerProperties swaggerProperties) {
@@ -47,10 +42,9 @@ public class SwaggerAutoconfiguration {
     @Bean("docket")
     @ConditionalOnMissingBean(Docket.class)
     public Docket docket() {
-        log.info(System.lineSeparator() + BANNER_I_SWAGGER_AUTO + System.lineSeparator());
         log.info("SwaggerAutoconfiguration ==> Start custom autoConfiguration [Docket] bean.");
         log.info("SwaggerAutoconfiguration ==> SwaggerProperties:[{}].", swaggerProperties);
-        return new Docket(DocumentationType.SWAGGER_2)
+        return new Docket(DocumentationType.OAS_30)
                 .enable(swaggerProperties.getEnable())
                 .groupName(swaggerProperties.getGroupName())
                 .protocols(newProtocolsSet())

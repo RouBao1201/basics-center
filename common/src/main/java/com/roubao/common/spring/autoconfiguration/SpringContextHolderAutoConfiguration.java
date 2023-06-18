@@ -17,16 +17,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class SpringContextHolderAutoConfiguration {
 
-    private static final String BANNER_I_SPRINGCONTEXT_HOLDER =
-            "   ___      ___  ___  ___  ___  _  _   ___   ___   ___   _  _  _____  ___ __  __ _____     _  _   ___   _     ___   ___  ___   " + System.lineSeparator() +
-            "  |_ _|    / __|| _ \\| _ \\|_ _|| \\| | / __| / __| / _ \\ | \\| ||_   _|| __|\\ \\/ /|_   _|   | || | / _ \\ | |   |   \\ | __|| _ \\  " + System.lineSeparator() +
-            "   | |     \\__ \\|  _/|   / | | | .` || (_ || (__ | (_) || .` |  | |  | _|  >  <   | |     | __ || (_) || |__ | |) || _| |   /  " + System.lineSeparator() +
-            "  |___|    |___/|_|  |_|_\\|___||_|\\_| \\___| \\___| \\___/ |_|\\_|  |_|  |___|/_/\\_\\  |_|     |_||_| \\___/ |____||___/ |___||_|_\\ ";
-
     @Bean("springContextHolder")
     @ConditionalOnMissingBean(SpringContextHolder.class)
     public SpringContextHolder springContextHolder() {
-        log.info(System.lineSeparator() + BANNER_I_SPRINGCONTEXT_HOLDER + System.lineSeparator());
         log.info("SpringContextHolderAutoConfiguration ==> Start custom autoConfiguration [SpringContextHolder] bean.");
         return new SpringContextHolder();
     }

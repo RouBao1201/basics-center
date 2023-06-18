@@ -28,15 +28,6 @@ import java.sql.SQLException;
 @Slf4j
 @RestControllerAdvice
 public class GlobalExceptionHandler {
-    private static final String I_GLOBAL_EXCEPTION =
-            "   ___      ___  _      ___   ___  ___  _        ___ __  __  ___  ___  ___  _____  ___   ___   _  _   " + System.lineSeparator() +
-            "  |_ _|    / __|| |    / _ \\ | _ )/   \\| |      | __|\\ \\/ / / __|| __|| _ \\|_   _||_ _| / _ \\ | \\| |  " + System.lineSeparator() +
-            "   | |    | (_ || |__ | (_) || _ \\| - || |__    | _|  >  < | (__ | _| |  _/  | |   | | | (_) || .` |  " + System.lineSeparator() +
-            "  |___|    \\___||____| \\___/ |___/|_|_||____|   |___|/_/\\_\\ \\___||___||_|    |_|  |___| \\___/ |_|\\_|";
-
-    public GlobalExceptionHandler() {
-        log.info(System.lineSeparator() + I_GLOBAL_EXCEPTION + System.lineSeparator());
-    }
 
     /**
      * 空指针异常

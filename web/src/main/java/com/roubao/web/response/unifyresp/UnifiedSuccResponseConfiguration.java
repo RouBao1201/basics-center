@@ -1,6 +1,6 @@
 package com.roubao.web.response.unifyresp;
 
-import lombok.extern.slf4j.Slf4j;
+import com.roubao.web.response.enums.RespCode;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 
 import com.roubao.web.response.dto.RespResult;
+
+import cn.hutool.json.JSONUtil;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 统一成功响应配置
@@ -23,17 +26,10 @@ import com.roubao.web.response.dto.RespResult;
 @ControllerAdvice
 @EnableConfigurationProperties(IUnifiedResponseProperties.class)
 public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Object> {
-
-    private static final String UNIFY_RESPONSE =
-            "   ___     _   _  _  _  ___  ___ __   __    ___  ___  ___  ___   ___   _  _  ___  ___ " + System.lineSeparator() +
-            "  |_ _|   | | | || \\| ||_ _|| __|\\ \\ / /   | _ \\| __|/ __|| _ \\ / _ \\ | \\| |/ __|| __|" + System.lineSeparator() +
-            "   | |    | |_| || .` | | | | _|  \\ V /    |   /| _| \\__ \\|  _/| (_) || .` |\\__ \\| _|" + System.lineSeparator() +
-            "  |___|    \\___/ |_|\\_||___||_|    |_|     |_|_\\|___||___/|_|   \\___/ |_|\\_||___/|___|";
-
     private final IUnifiedResponseProperties iUnifiedResponseProperties;
 
     public UnifiedSuccResponseConfiguration(IUnifiedResponseProperties iUnifiedResponseProperties) {
-        log.info(System.lineSeparator() + UNIFY_RESPONSE + System.lineSeparator());
+        log.info("UnifiedSuccResponseConfiguration ==> IUnifiedResponseProperties:[{}].", iUnifiedResponseProperties);
         this.iUnifiedResponseProperties = iUnifiedResponseProperties;
     }
 
@@ -44,8 +40,16 @@ public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Obje
 
     @Override
     public Object beforeBodyWrite(Object obj, MethodParameter methodParameter, MediaType mediaType,
-                                  Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest,
-                                  ServerHttpResponse serverHttpResponse) {
+        Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest,
+        ServerHttpResponse serverHttpResponse) {
+        // swagger相关api放行
+        String uriStr = serverHttpRequest.getURI().toString();
+        for (String excludeUriContain : iUnifiedResponseProperties.getExcludeUriContains()) {
+            if (uriStr.contains(excludeUriContain)) {
+                return obj;
+            }
+        }
+
         // 判断类和方法上是否存在跳过统一响应注解
         SkipUnifyResp skipUnifyRespForMethod = methodParameter.getMethodAnnotation(SkipUnifyResp.class);
         SkipUnifyResp skipUnifyRespForClass = methodParameter.getDeclaringClass().getAnnotation(SkipUnifyResp.class);
@@ -59,20 +63,38 @@ public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Obje
 
         EnableCustomUnifiedSuccResponse.RunMode runMode = iUnifiedResponseProperties.getRunMode();
         if (runMode == EnableCustomUnifiedSuccResponse.RunMode.AUTO) {
-            return RespResult.success(obj);
-        } else {
+            return convertRespObjByType(RespCode.SUCCESS_200.getCode(), RespCode.SUCCESS_200.getMessage(), obj);
+        }
+        else {
             UnifySuccResp unifyRespForMethod = methodParameter.getMethodAnnotation(UnifySuccResp.class);
             if (unifyRespForMethod == null) {
                 UnifySuccResp unifyRespForClass = methodParameter.getDeclaringClass()
-                        .getAnnotation(UnifySuccResp.class);
+                    .getAnnotation(UnifySuccResp.class);
                 if (unifyRespForClass == null) {
                     return obj;
-                } else {
-                    return RespResult.success(unifyRespForClass.code(), unifyRespForClass.message(), obj);
                 }
-            } else {
-                return RespResult.success(unifyRespForMethod.code(), unifyRespForMethod.message(), obj);
+                else {
+                    return convertRespObjByType(unifyRespForClass.code(), unifyRespForClass.message(), obj);
+                }
+            }
+            else {
+                return convertRespObjByType(unifyRespForMethod.code(), unifyRespForMethod.message(), obj);
             }
         }
+    }
+
+    /**
+     * 类型转换（当原接口响应类型未String时,封装统一响应结果会导致类型转换报错）
+     *
+     * @param code 响应编码
+     * @param message 响应信息
+     * @param obj 响应数据
+     * @return Object
+     */
+    private Object convertRespObjByType(Integer code, String message, Object obj) {
+        if (obj == null || obj instanceof String) {
+            return JSONUtil.toJsonStr(RespResult.success(code, message, obj));
+        }
+        return RespResult.success(code, message, obj);
     }
 }

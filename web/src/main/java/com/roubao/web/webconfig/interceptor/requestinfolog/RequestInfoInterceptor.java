@@ -36,6 +36,7 @@ public class RequestInfoInterceptor implements HandlerInterceptor {
                 data.put(name, value);
             }
             sb.append(System.lineSeparator())
+                    .append(System.lineSeparator())
                     .append("|| ================================================================================================").append(System.lineSeparator())
                     .append("|| RemoteAddrPort: ").append(request.getRemoteAddr()).append(":").append(request.getRemotePort()).append(System.lineSeparator())
                     .append("|| ------------------------------------------------------------------------------------------------").append(System.lineSeparator())
@@ -47,7 +48,8 @@ public class RequestInfoInterceptor implements HandlerInterceptor {
                     .append("|| URL        : ").append(request.getRequestURL()).append(System.lineSeparator())
                     .append("|| URI        : ").append(request.getRequestURI()).append(System.lineSeparator())
                     .append("|| ------------------------------------------------------------------------------------------------").append(System.lineSeparator())
-                    .append("|| ================================================================================================");
+                    .append("|| ================================================================================================")
+                    .append(System.lineSeparator());
             log.info(String.valueOf(sb));   
         }
         return true;
