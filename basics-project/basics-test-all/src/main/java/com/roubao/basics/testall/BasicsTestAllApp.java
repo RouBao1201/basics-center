@@ -1,5 +1,7 @@
 package com.roubao.basics.testall;
 
+import com.roubao.common.locker.EnableCustomLocker;
+import com.roubao.common.locker.redis.bean.RedisLocker;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.retry.annotation.EnableRetry;
@@ -22,6 +24,9 @@ import com.roubao.web.webconfig.interceptor.requestinfolog.EnableCustomRequestIn
 @EnableCustomUnifiedSuccResponse // 开启统一响应封装
 @EnableCustomRequestInfoPreLog // 开启请求信息拦截日志输出（自定义）
 @EnableCustomAccessSniper // 开启访问拦截限制（自定义）
+@EnableCustomLocker({
+        RedisLocker.class
+})
 public class BasicsTestAllApp {
     public static void main(String[] args) {
         SpringApplication app = new SpringApplication(BasicsTestAllApp.class);

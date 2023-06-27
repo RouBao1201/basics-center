@@ -1,5 +1,8 @@
 package com.roubao.basics.testall.controller;
 
+import com.roubao.common.locker.redis.bean.RedisLock;
+import com.roubao.common.locker.redis.bean.RedisLocker;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +26,17 @@ import io.swagger.annotations.ApiOperation;
 @RequestMapping("/test")
 public class TestController {
 
+    @Autowired
+    private RedisLocker redisLocker;
+
     @ApiOperation("GET请求测试01")
     @UnifySuccResp
     @GetMapping("/getTest01")
     public String getTest01() {
+        RedisLock lock = redisLocker.createLock();
+        lock.tryLock("1");
+        System.out.println("Redis分布式锁锁住拉!我可以安心执行逻辑!");
+        lock.unLock();
         return "你想看啥?";
     }
 
