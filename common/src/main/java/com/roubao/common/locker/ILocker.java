@@ -8,4 +8,5 @@ package com.roubao.common.locker;
  * @since 2023/6/27
  **/
 public interface ILocker {
+
 }

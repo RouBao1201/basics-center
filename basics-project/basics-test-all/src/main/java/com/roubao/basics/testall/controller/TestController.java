@@ -2,6 +2,9 @@ package com.roubao.basics.testall.controller;
 
 import com.roubao.common.locker.redis.bean.RedisLock;
 import com.roubao.common.locker.redis.bean.RedisLocker;
+import com.roubao.common.locker.redisson.bean.RedissonLocker;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +16,8 @@ import com.roubao.web.response.unifyresp.UnifySuccResp;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+
+import java.util.concurrent.TimeUnit;
 
 /**
  * 测试API
@@ -29,14 +34,16 @@ public class TestController {
     @Autowired
     private RedisLocker redisLocker;
 
+    @Autowired
+    private RedissonClient redissonClient;
+
+    @Autowired
+    private RedissonLocker redissonLocker;
+
     @ApiOperation("GET请求测试01")
     @UnifySuccResp
     @GetMapping("/getTest01")
     public String getTest01() {
-        RedisLock lock = redisLocker.createLock();
-        lock.tryLock("1");
-        System.out.println("Redis分布式锁锁住拉!我可以安心执行逻辑!");
-        lock.unLock();
         return "你想看啥?";
     }
 
@@ -55,5 +62,44 @@ public class TestController {
         userInfoDTO.setName("RouBao");
         userInfoDTO.setAge(18);
         return RespResult.success(userInfoDTO);
+    }
+
+    @ApiOperation("测试RedisLocker")
+    @GetMapping("/testRedisLocker")
+    public String testRedisLocker() {
+        RedisLock lock = redisLocker.createLock("RouBao-Redis-lock");
+        lock.lock();
+        try {
+            Thread.sleep(40000);
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Redis分布式锁锁住拉!我可以安心执行逻辑!");
+        lock.unlock();
+        System.out.println("方法执行完啦！");
+        return "测试RedisLocker Over!!";
+    }
+
+    @ApiOperation("测试RedissonLocker")
+    @GetMapping("/testRedissonLocker")
+    public String testRedissonLocker() {
+        RLock lock = redissonLocker.createLock("RouBao-Redisson-lock");
+        try {
+            lock.tryLock(50, 30, TimeUnit.SECONDS);
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            Thread.sleep(40000);
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println("Redisson分布式锁锁住拉!我可以安心执行逻辑!");
+        lock.unlock();
+        System.out.println("方法执行完啦！");
+        return "测试RedissonLocker Over!!";
     }
 }

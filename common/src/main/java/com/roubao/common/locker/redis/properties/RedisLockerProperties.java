@@ -19,7 +19,7 @@ public class RedisLockerProperties {
     /**
      * 锁过期时间（单位ms）
      */
-    private long expire = 30000;
+    private long expire = 10000;
 
     /**
      * 循环获取锁的次数（-1为不限制）
@@ -30,6 +30,11 @@ public class RedisLockerProperties {
      * 循环获取锁间隔时间（单位ms）
      */
     private long fetchKeyIntervalTime = 1000;
+
+    /**
+     * 检测锁过期时间间隔（单位ms）
+     */
+    private long renewExpire = 5000;
 
     public String getLockPrefix() {
         return lockPrefix;
@@ -61,6 +66,14 @@ public class RedisLockerProperties {
 
     public void setFetchKeyIntervalTime(long fetchKeyIntervalTime) {
         this.fetchKeyIntervalTime = fetchKeyIntervalTime;
+    }
+
+    public long getRenewExpire() {
+        return renewExpire;
+    }
+
+    public void setRenewExpire(long renewExpire) {
+        this.renewExpire = renewExpire;
     }
 
     @Override

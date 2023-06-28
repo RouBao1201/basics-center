@@ -29,10 +29,11 @@ public class RedisLocker implements ILocker {
     /**
      * 创建redis锁
      *
+     * @param lockName 锁名称（唯一）
      * @return RedisLock
      */
-    public RedisLock createLock() {
-        return new RedisLock(getRedisLockerProperties(), getStringRedisTemplate());
+    public RedisLock createLock(String lockName) {
+        return new RedisLock(lockName, getRedisLockerProperties(), getStringRedisTemplate());
     }
 
     public RedisLockerProperties getRedisLockerProperties() {
