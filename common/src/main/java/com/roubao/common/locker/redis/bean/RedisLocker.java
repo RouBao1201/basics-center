@@ -1,8 +1,8 @@
 package com.roubao.common.locker.redis.bean;
 
-import com.roubao.common.locker.ILocker;
 import org.springframework.data.redis.core.StringRedisTemplate;
 
+import com.roubao.common.locker.ILocker;
 import com.roubao.common.locker.redis.properties.RedisLockerProperties;
 
 import lombok.extern.slf4j.Slf4j;
@@ -30,7 +30,7 @@ public class RedisLocker implements ILocker {
      * 创建redis锁
      *
      * @param lockName 锁名称（唯一）
-     * @return RedisLock
+     * @return IRedisLock
      */
     public RedisLock createLock(String lockName) {
         return new RedisLock(lockName, getRedisLockerProperties(), getStringRedisTemplate());

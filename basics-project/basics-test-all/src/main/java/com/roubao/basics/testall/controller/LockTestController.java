@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.roubao.common.exception.handler.ExceptionHandler;
+import com.roubao.common.locker.functions.RedisLockExecutor;
 import com.roubao.common.locker.redis.bean.RedisLock;
 import com.roubao.common.locker.redis.bean.RedisLocker;
 import com.roubao.common.locker.redisson.bean.RedissonLocker;
@@ -38,11 +39,14 @@ public class LockTestController {
     @Autowired
     private RedissonLocker redissonLocker;
 
+    @Autowired
+    private RedisLockExecutor redisLockExecutor;
+
     @ApiOperation("RedisLocker分布锁测试")
     @GetMapping("/redisLocker")
     public String redisLocker() {
         RedisLock lock = redisLocker.createLock("redis-ticket-lock");
-        lock.lock();
+        lock.tryLock();
         int oldTicketCount = ticketCount;
         try {
             if (ticketCount > 0) {
@@ -63,6 +67,26 @@ public class LockTestController {
             lock.unlock();
         }
         return "购票完成!";
+    }
+
+    @ApiOperation("RedisLockExecutor分布锁测试")
+    @GetMapping("/redisLockExecutor")
+    public String redisLockExecutor() {
+        return redisLockExecutor.executeWithLockThrows("redisLockExecutor-ticket-lock", () -> {
+            int oldTicketCount = ticketCount;
+            if (ticketCount > 0) {
+                --ticketCount;
+            }
+            try {
+                Thread.sleep(2000);
+            }
+            catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(
+                "线程:" + Thread.currentThread().getName() + "购票结束! 原票数:" + oldTicketCount + ", 购买后剩余:" + ticketCount);
+            return "购票完成!";
+        });
     }
 
     @ApiOperation("RedissonLocker分布锁测试")

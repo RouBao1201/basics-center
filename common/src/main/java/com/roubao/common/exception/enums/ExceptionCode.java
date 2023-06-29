@@ -11,7 +11,11 @@ public enum ExceptionCode {
     /**
      * 业务异常
      */
-    SERVICE_EXCEPTION(500, "业务异常");
+    SERVICE_EXCEPTION(500, "业务异常"),
+    /**
+     * 加锁超时异常
+     */
+    LOCK_LIMIT_EXCEPTION(500, "加锁超时异常");
 
     private final Integer code;
 

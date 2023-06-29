@@ -24,12 +24,12 @@ public class RedisLockerProperties {
     /**
      * 循环获取锁的次数（-1为不限制）
      */
-    private int fetchKeyTimes = -1;
+    private int fetchLockTimes = -1;
 
     /**
      * 循环获取锁间隔时间（单位ms）
      */
-    private long fetchKeyIntervalTime = 1000;
+    private long fetchLockIntervalTime = 1000;
 
     /**
      * 检测锁过期时间间隔（单位ms）
@@ -52,20 +52,20 @@ public class RedisLockerProperties {
         this.expire = expire;
     }
 
-    public int getFetchKeyTimes() {
-        return fetchKeyTimes;
+    public int getFetchLockTimes() {
+        return fetchLockTimes;
     }
 
-    public void setFetchKeyTimes(int fetchKeyTimes) {
-        this.fetchKeyTimes = fetchKeyTimes;
+    public void setFetchLockTimes(int fetchLockTimes) {
+        this.fetchLockTimes = fetchLockTimes;
     }
 
-    public long getFetchKeyIntervalTime() {
-        return fetchKeyIntervalTime;
+    public long getFetchLockIntervalTime() {
+        return fetchLockIntervalTime;
     }
 
-    public void setFetchKeyIntervalTime(long fetchKeyIntervalTime) {
-        this.fetchKeyIntervalTime = fetchKeyIntervalTime;
+    public void setFetchLockIntervalTime(long fetchLockIntervalTime) {
+        this.fetchLockIntervalTime = fetchLockIntervalTime;
     }
 
     public long getRenewExpire() {
@@ -78,7 +78,7 @@ public class RedisLockerProperties {
 
     @Override
     public String toString() {
-        return "RedisLockerProperties{" + "lockPrefix='" + lockPrefix + '\'' + ", expire=" + expire + ", fetchKeyTimes="
-            + fetchKeyTimes + ", fetchKeyIntervalTime=" + fetchKeyIntervalTime + '}';
+        return "RedisLockerProperties{" + "lockPrefix='" + lockPrefix + '\'' + ", expire=" + expire + ", fetchLockTimes="
+            + fetchLockTimes + ", fetchLockIntervalTime=" + fetchLockIntervalTime + '}';
     }
 }
