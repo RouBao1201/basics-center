@@ -111,7 +111,7 @@ public class RespResult<T> implements Serializable {
      * @return RespResult
      */
     public static <T> RespResult<T> fail() {
-        return new RespResult<>(RespCode.FAIL_500.getCode(), RespCode.FAIL_500.getMessage(), null);
+        return new RespResult<>(RespCode.FAIL_0.getCode(), RespCode.FAIL_0.getMessage(), null);
     }
 
     /**
@@ -122,7 +122,7 @@ public class RespResult<T> implements Serializable {
      * @return RespResult
      */
     public static <T> RespResult<T> fail(T data) {
-        return new RespResult<>(RespCode.FAIL_500.getCode(), RespCode.FAIL_500.getMessage(), data);
+        return new RespResult<>(RespCode.FAIL_0.getCode(), RespCode.FAIL_0.getMessage(), data);
     }
 
     /**
@@ -133,7 +133,7 @@ public class RespResult<T> implements Serializable {
      * @return RespResult
      */
     public static <T> RespResult<T> fail(String message) {
-        return new RespResult<>(RespCode.FAIL_500.getCode(), message, null);
+        return new RespResult<>(RespCode.FAIL_0.getCode(), message, null);
     }
 
     /**
@@ -145,7 +145,7 @@ public class RespResult<T> implements Serializable {
      * @return RespResult
      */
     public static <T> RespResult<T> fail(String message, T data) {
-        return new RespResult<>(RespCode.FAIL_500.getCode(), message, data);
+        return new RespResult<>(RespCode.FAIL_0.getCode(), message, data);
     }
 
     /**
@@ -170,6 +170,75 @@ public class RespResult<T> implements Serializable {
      * @return RespResult
      */
     public static <T> RespResult<T> fail(Integer code, String message, T data) {
+        return new RespResult<>(code, message, data);
+    }
+
+    /**
+     * 异常响应
+     *
+     * @param <T> 数据泛型
+     * @return RespResult
+     */
+    public static <T> RespResult<T> error() {
+        return new RespResult<>(RespCode.ERROR_500.getCode(), RespCode.ERROR_500.getMessage(), null);
+    }
+
+    /**
+     * 异常响应
+     *
+     * @param data 响应数据
+     * @param <T> 数据泛型
+     * @return RespResult
+     */
+    public static <T> RespResult<T> error(T data) {
+        return new RespResult<>(RespCode.ERROR_500.getCode(), RespCode.ERROR_500.getMessage(), data);
+    }
+
+    /**
+     * 异常响应
+     *
+     * @param message 响应信息
+     * @param <T> 数据泛型
+     * @return RespResult
+     */
+    public static <T> RespResult<T> error(String message) {
+        return new RespResult<>(RespCode.ERROR_500.getCode(), message, null);
+    }
+
+    /**
+     * 异常响应
+     *
+     * @param message 响应信息
+     * @param data 响应数据
+     * @param <T> 数据泛型
+     * @return RespResult
+     */
+    public static <T> RespResult<T> error(String message, T data) {
+        return new RespResult<>(RespCode.ERROR_500.getCode(), message, data);
+    }
+
+    /**
+     * 异常响应
+     *
+     * @param message 响应信息
+     * @param code 响应编码
+     * @param <T> 数据泛型
+     * @return RespResult
+     */
+    public static <T> RespResult<T> error(Integer code, String message) {
+        return new RespResult<>(code, message, null);
+    }
+
+    /**
+     * 异常响应
+     *
+     * @param message 响应信息
+     * @param code 响应编码
+     * @param data 响应数据
+     * @param <T> 数据泛型
+     * @return RespResult
+     */
+    public static <T> RespResult<T> error(Integer code, String message, T data) {
         return new RespResult<>(code, message, data);
     }
 }

@@ -13,17 +13,17 @@ public enum RespCode {
      */
     SUCCESS_200(200, "success"),
     /**
-     * 失败500
+     * 成功1
      */
-    FAIL_500(500, "failure"),
+    SUCCESS_1(1, "success"),
     /**
-     * 成功0
+     * 失败0
      */
-    SUCCESS_0(0, "success"),
+    FAIL_0(0, "failure"),
     /**
-     * 失败1
+     * 异常500
      */
-    FAIL_1(1, "failure");
+    ERROR_500(500, "error");
 
     private final Integer code;
 
