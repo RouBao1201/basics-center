@@ -10,7 +10,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import com.google.common.util.concurrent.AtomicLongMap;
-import com.roubao.common.exception.handler.ExceptionPublisher;
+import com.roubao.common.exception.handler.ExceptionHandler;
 
 import cn.hutool.core.util.ObjUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -103,8 +103,8 @@ public class AccessSniperInterceptor implements HandlerInterceptor, Ordered {
             });
             if (lockFlag != 0) {
                 log.error("Visit too often. INTERFACE KEY:[" + key + "] is restricted.");
-                ExceptionPublisher
-                    .publishServiceException("Visit too often. INTERFACE KEY:[" + key + "] is restricted.");
+                ExceptionHandler
+                    .throwServiceException("Visit too often. INTERFACE KEY:[" + key + "] is restricted.");
             }
         }
         return true;

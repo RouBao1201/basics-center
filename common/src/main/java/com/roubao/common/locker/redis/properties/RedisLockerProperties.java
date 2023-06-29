@@ -14,7 +14,7 @@ public class RedisLockerProperties {
     /**
      * 锁前缀
      */
-    private String lockPrefix = "lock:";
+    private String lockPrefix = "redisLocker:";
 
     /**
      * 锁过期时间（单位ms）

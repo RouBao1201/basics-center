@@ -78,12 +78,13 @@ public class RedisLock implements Lock {
         // 循环获取锁
         int count = 0;
         while (true) {
-            log.info("RedisLocker ==> TryLock {} times.", count + 1);
+            log.info("RedisLocker ==> TryLock {} times. The lockName:{}, lockSingleId:{}", count + 1,
+                redisLockerProperties.getLockPrefix() + getLockName(), this.singleId);
             Boolean lockFlag = this.stringRedisTemplate.execute(new DefaultRedisScript<>(luaScript, Boolean.class),
                     keys, this.singleId, expireTime);
             ++count;
             if (Boolean.TRUE.equals(lockFlag)) {
-                log.info("RedisLocker ==> TryLock success. The lockKey is:[{}].", getLockName());
+                log.info("RedisLocker ==> TryLock success. The lockName is:[{}].", getLockName());
                 // 加锁成功,启动定时器重置过期时间
                 renewExpire();
                 return true;
@@ -92,7 +93,7 @@ public class RedisLock implements Lock {
                 try {
                     if (redisLockerProperties.getFetchKeyTimes() != -1
                             && count >= redisLockerProperties.getFetchKeyTimes()) {
-                        log.error("RedisLocker ==> TryLock failure. The lockKey is:[{}].", getLockName());
+                        log.error("RedisLocker ==> TryLock failure. The lockName is:[{}].", getLockName());
                         return false;
                     }
                     Thread.sleep(redisLockerProperties.getFetchKeyIntervalTime());
@@ -121,6 +122,7 @@ public class RedisLock implements Lock {
         if (execute == null) {
             throw new IllegalMonitorStateException("RedisLock ==> This lock doesn't belong to you!");
         }
+        log.info("Unlock success. LockName is [{}].", getLockName());
     }
 
     /**

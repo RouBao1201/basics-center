@@ -1,5 +1,5 @@
 server:
-  port: 8091
+  port: 19090
   servlet:
     context-path: /roubao-basics-test-all
 spring:

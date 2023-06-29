@@ -10,37 +10,50 @@ package com.roubao.common.exception.model;
 public class BaseException extends Exception {
     private static final long serialVersionUID = 4440788540023696622L;
 
-    private Integer code;
+    private Integer errorCode;
 
     public BaseException() {
     }
 
-    public BaseException(Integer code) {
-        this.code = code;
+    public BaseException(Integer errorCode) {
+        this.errorCode = errorCode;
     }
 
     public BaseException(String message) {
         super(message);
     }
 
-    public BaseException(Integer code, String message) {
+    public BaseException(Integer errorCode, String message) {
         super(message);
-        this.code = code;
+        setErrorCode(errorCode);
+    }
+
+    public BaseException(Throwable cause) {
+        super(cause);
+    }
+
+    public BaseException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public BaseException(Integer errorCode, String message, Throwable cause) {
+        super(message, cause);
+        setErrorCode(errorCode);
     }
 
     @Override
     public String getMessage() {
-        if (this.code != null) {
-            return "[" + this.code + "]:" + super.getMessage();
+        if (this.errorCode != null) {
+            return "[" + this.errorCode + "]:" + super.getMessage();
         }
         return super.getMessage();
     }
 
-    public Integer getCode() {
-        return code;
+    public Integer getErrorCode() {
+        return errorCode;
     }
 
-    public void setCode(Integer code) {
-        this.code = code;
+    public void setErrorCode(Integer errorCode) {
+        this.errorCode = errorCode;
     }
 }

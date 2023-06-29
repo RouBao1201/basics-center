@@ -1,7 +1,7 @@
 package com.roubao.common.exception.model;
 
 /**
- * 业务异常
+ * 业务运行时异常
  *
  * @author SongYanBin
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
@@ -20,4 +20,17 @@ public class ServiceException extends BaseRuntimeException {
     public ServiceException(Integer code, String message) {
         super(code, message);
     }
+
+    public ServiceException(Throwable cause) {
+        super(cause);
+    }
+
+    public ServiceException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ServiceException(Integer errorCode, String message, Throwable cause) {
+        super(errorCode, message, cause);
+    }
+
 }

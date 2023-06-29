@@ -1,6 +1,5 @@
 package com.roubao.common.exception.handler;
 
-
 import com.roubao.common.exception.enums.ExceptionCode;
 import com.roubao.common.exception.model.ServiceException;
 
@@ -11,14 +10,13 @@ import com.roubao.common.exception.model.ServiceException;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/30
  **/
-public class ExceptionPublisher {
+public class ExceptionHandler {
     /**
      * 抛出业务异常
      *
      * @param message 异常信息
-     * @return BaseRuntimeException
      */
-    public static void publishServiceException(String message) {
+    public static void throwServiceException(String message) {
         throw new ServiceException(ExceptionCode.SERVICE_EXCEPTION.getCode(), message);
     }
 
@@ -26,24 +24,41 @@ public class ExceptionPublisher {
      * 抛出业务异常
      *
      * @param exceptionCode exceptionCode
-     * @return ServiceException
      */
-    public static void publishServiceException(ExceptionCode exceptionCode) {
+    public static void throwServiceException(ExceptionCode exceptionCode) {
         throw new ServiceException(exceptionCode.getCode(), exceptionCode.getMessage());
     }
 
     /**
      * 抛出业务异常
      *
-     * @param code    异常编码
+     * @param code 异常编码
      * @param message 异常信息
-     * @return BaseRuntimeException
      */
-    public static void publishServiceException(Integer code, String message) {
+    public static void throwServiceException(Integer code, String message) {
         throw new ServiceException(code, message);
     }
 
-    private ExceptionPublisher() {
+    /**
+     * 抛出业务异常
+     *
+     * @param cause 异常类
+     */
+    public static void throwServiceException(Throwable cause) {
+        throw new ServiceException(cause);
+    }
+
+    /**
+     * 抛出业务异常
+     *
+     * @param message 异常信息
+     * @param cause 异常类
+     */
+    public static void throwServiceException(String message, Throwable cause) {
+        throw new ServiceException(message, cause);
+    }
+
+    private ExceptionHandler() {
 
     }
 }
