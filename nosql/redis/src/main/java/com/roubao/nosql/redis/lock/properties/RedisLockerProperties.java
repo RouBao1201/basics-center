@@ -1,4 +1,4 @@
-package com.roubao.common.locker.redis.properties;
+package com.roubao.nosql.redis.lock.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

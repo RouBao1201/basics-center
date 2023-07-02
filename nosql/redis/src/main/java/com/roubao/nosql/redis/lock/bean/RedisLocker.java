@@ -1,11 +1,8 @@
-package com.roubao.common.locker.redis.bean;
+package com.roubao.nosql.redis.lock.bean;
 
-import org.springframework.data.redis.core.StringRedisTemplate;
-
-import com.roubao.common.locker.ILocker;
-import com.roubao.common.locker.redis.properties.RedisLockerProperties;
-
+import com.roubao.nosql.redis.lock.properties.RedisLockerProperties;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 /**
  * redis锁构造器
@@ -15,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
  * @since 2022/12/23
  **/
 @Slf4j
-public class RedisLocker implements ILocker {
+public class RedisLocker {
 
     private final RedisLockerProperties redisLockerProperties;
 

@@ -1,6 +1,6 @@
-package com.roubao.common.locker.redis.bean;
+package com.roubao.nosql.redis.lock.bean;
 
-import com.roubao.common.locker.redis.properties.RedisLockerProperties;
+import com.roubao.nosql.redis.lock.properties.RedisLockerProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.script.DefaultRedisScript;
