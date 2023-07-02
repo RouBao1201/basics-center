@@ -1,5 +1,8 @@
 package com.roubao.orm.page.dto;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import java.io.Serializable;
 
 /**
@@ -9,12 +12,21 @@ import java.io.Serializable;
  * @copyright ©2023-2099 SongYanBin. All rights reserved.
  * @since 2023/3/16
  **/
+@ApiModel("分页请求基础DTO")
 public class PageDTO implements Serializable {
 
     private static final long serialVersionUID = -7668574185556165462L;
 
+    /**
+     * 页码
+     */
+    @ApiModelProperty("页码")
     private Integer pageNum;
 
+    /**
+     * 每页数量
+     */
+    @ApiModelProperty("每页数量")
     private Integer pageSize;
 
     public PageDTO() {
