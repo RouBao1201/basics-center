@@ -1,16 +1,10 @@
 package com.roubao.basics.testall.controller;
 
-import org.redisson.api.RLock;
-import org.redisson.api.RedissonClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.roubao.basics.testall.dto.UserInfoDTO;
-import com.roubao.common.locker.redis.bean.RedisLock;
-import com.roubao.common.locker.redis.bean.RedisLocker;
-import com.roubao.common.locker.redisson.bean.RedissonLocker;
 import com.roubao.web.response.dto.RespResult;
 import com.roubao.web.response.unifyresp.UnifySuccResp;
 
