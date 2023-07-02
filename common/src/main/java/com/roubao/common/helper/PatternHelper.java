@@ -17,6 +17,51 @@ public class PatternHelper {
      */
     public static final Pattern PATTERN_CONTAIN_CHINESE = Pattern.compile(RegexConstant.REGEX_CONTAIN_CHINESE);
 
+    /**
+     * 负浮点数
+     */
+    public static final Pattern PATTERN_NEGATIVE_FLOAT = Pattern.compile(RegexConstant.REGEX_NEGATIVE_FLOAT);
+
+    /**
+     * 正浮点数
+     */
+    public static final Pattern PATTERN_POSITIVE_FLOAT = Pattern.compile(RegexConstant.REGEX_POSITIVE_FLOAT);
+
+    /**
+     * 非正整数
+     */
+    public static final Pattern PATTERN_NOT_POSITIVE_INTEGER = Pattern.compile(RegexConstant.REGEX_NOT_POSITIVE_INTEGER);
+
+    /**
+     * 非负整数
+     */
+    public static final Pattern PATTERN_NOT_NEGATIVE_INTEGER = Pattern.compile(RegexConstant.REGEX_NOT_NEGATIVE_INTEGER);
+
+    /**
+     * 整数
+     */
+    public static final Pattern PATTERN_INTEGER = Pattern.compile(RegexConstant.REGEX_INTEGER);
+
+    /**
+     * 负整数
+     */
+    public static final Pattern PATTERN_NEGATIVE_INTEGER = Pattern.compile(RegexConstant.REGEX_NEGATIVE_INTEGER);
+
+    /**
+     * 正整数
+     */
+    public static final Pattern PATTERN_POSITIVE_INTEGER = Pattern.compile(RegexConstant.REGEX_POSITIVE_INTEGER);
+
+    /**
+     * 中国邮政编码
+     */
+    public static final Pattern PATTERN_ZIP_CODE = Pattern.compile(RegexConstant.REGEX_ZIP_CODE);
+
+    /**
+     * 空白行
+     */
+    public static final Pattern PATTERN_BLANK_LINE = Pattern.compile(RegexConstant.REGEX_BLANK_LINE);
+
     private PatternHelper() {
 
     }
