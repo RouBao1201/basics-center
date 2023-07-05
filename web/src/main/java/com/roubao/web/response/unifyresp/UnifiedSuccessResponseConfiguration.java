@@ -2,7 +2,9 @@ package com.roubao.web.response.unifyresp;
 
 import com.roubao.web.response.enums.RespCode;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.ImportAware;
 import org.springframework.core.MethodParameter;
+import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.server.ServerHttpRequest;
@@ -15,6 +17,8 @@ import com.roubao.web.response.dto.RespResult;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.Map;
+
 /**
  * 统一成功响应配置
  *
@@ -25,17 +29,12 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @ControllerAdvice
 @EnableConfigurationProperties(IUnifiedResponseProperties.class)
-public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Object> {
+public class UnifiedSuccessResponseConfiguration implements ResponseBodyAdvice<Object>, ImportAware {
     private final IUnifiedResponseProperties iUnifiedResponseProperties;
 
-    public UnifiedSuccResponseConfiguration(IUnifiedResponseProperties iUnifiedResponseProperties) {
-        log.info("UnifiedSuccResponseConfiguration ==> IUnifiedResponseProperties:[{}].", iUnifiedResponseProperties);
+    public UnifiedSuccessResponseConfiguration(IUnifiedResponseProperties iUnifiedResponseProperties) {
+        log.info("UnifiedSuccessResponseConfiguration ==> IUnifiedResponseProperties:[{}].", iUnifiedResponseProperties);
         this.iUnifiedResponseProperties = iUnifiedResponseProperties;
-    }
-
-    @Override
-    public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-        return true;
     }
 
     @Override
@@ -61,8 +60,8 @@ public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Obje
             return obj;
         }
 
-        EnableCustomUnifiedSuccResponse.RunMode runMode = iUnifiedResponseProperties.getRunMode();
-        if (runMode == EnableCustomUnifiedSuccResponse.RunMode.AUTO) {
+        EnableCustomUnifiedSuccessResponse.RunMode runMode = iUnifiedResponseProperties.getRunMode();
+        if (runMode == EnableCustomUnifiedSuccessResponse.RunMode.AUTO) {
             return convertRespObjByType(RespCode.SUCCESS_200.getCode(), RespCode.SUCCESS_200.getMessage(), obj);
         }
         else {
@@ -81,6 +80,23 @@ public class UnifiedSuccResponseConfiguration implements ResponseBodyAdvice<Obje
                 return convertRespObjByType(unifyRespForMethod.code(), unifyRespForMethod.message(), obj);
             }
         }
+    }
+
+    @Override
+    public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
+        return true;
+    }
+
+    @Override
+    public void setImportMetadata(AnnotationMetadata annotationMetadata) {
+        Map<String, Object> annotationAttributes = annotationMetadata
+            .getAnnotationAttributes(EnableCustomUnifiedSuccessResponse.class.getName());
+        EnableCustomUnifiedSuccessResponse.RunMode value = (EnableCustomUnifiedSuccessResponse.RunMode) annotationAttributes
+            .get("value");
+
+        // 根据启动统一响应注解配置参数重置运行模式
+        log.info("Setting unified success response run mode to [{}].", value.toString());
+        iUnifiedResponseProperties.setRunMode(value);
     }
 
     /**

@@ -24,7 +24,6 @@ import io.swagger.annotations.ApiOperation;
 public class TestController {
 
     @ApiOperation("GET请求测试01")
-    @UnifySuccResp
     @GetMapping("/getTest01")
     public String getTest01() {
         return "你想看啥?";

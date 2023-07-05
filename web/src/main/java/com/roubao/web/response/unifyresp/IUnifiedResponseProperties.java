@@ -17,7 +17,7 @@ public class IUnifiedResponseProperties {
     /**
      * 执行模式（手动/自动）
      */
-    private EnableCustomUnifiedSuccResponse.RunMode runMode = EnableCustomUnifiedSuccResponse.RunMode.AUTO;
+    private EnableCustomUnifiedSuccessResponse.RunMode runMode = EnableCustomUnifiedSuccessResponse.RunMode.AUTO;
 
     /**
      * 包含以下字符的URI不进行统一响应处理
@@ -26,11 +26,11 @@ public class IUnifiedResponseProperties {
         "swagger", "api-docs"
     };
 
-    public EnableCustomUnifiedSuccResponse.RunMode getRunMode() {
+    public EnableCustomUnifiedSuccessResponse.RunMode getRunMode() {
         return runMode;
     }
 
-    public void setRunMode(EnableCustomUnifiedSuccResponse.RunMode runMode) {
+    public void setRunMode(EnableCustomUnifiedSuccessResponse.RunMode runMode) {
         this.runMode = runMode;
     }
 

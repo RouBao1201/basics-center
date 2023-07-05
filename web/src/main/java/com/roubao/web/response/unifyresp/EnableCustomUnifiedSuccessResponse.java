@@ -18,10 +18,19 @@ import java.lang.annotation.Target;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
-@Import(UnifiedSuccResponseConfiguration.class)
-public @interface EnableCustomUnifiedSuccResponse {
+@Import(UnifiedSuccessResponseConfiguration.class)
+public @interface EnableCustomUnifiedSuccessResponse {
+
+    RunMode value() default RunMode.AUTO;
 
     enum RunMode {
-        AUTO, MANUAL;
+        /**
+         * 自动模式（所有都为自动统一响应）
+         */
+        AUTO,
+        /**
+         * 手动模式（手动添加统一响应注解）
+         */
+        MANUAL;
     }
 }
