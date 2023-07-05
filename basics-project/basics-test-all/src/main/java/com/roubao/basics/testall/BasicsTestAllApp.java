@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.retry.annotation.EnableRetry;
 
 import com.roubao.web.response.unifyresp.EnableCustomUnifiedSuccResponse;
-import com.roubao.web.webconfig.exceptionhandler.EnableCustomGlobalExceptionHandler;
+import com.roubao.web.response.exceptionhandler.EnableCustomGlobalExceptionHandler;
 import com.roubao.web.webconfig.interceptor.accesslimit.EnableCustomAccessSniper;
 
 /**

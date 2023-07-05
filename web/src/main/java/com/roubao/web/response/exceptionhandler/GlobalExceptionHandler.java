@@ -1,4 +1,4 @@
-package com.roubao.web.webconfig.exceptionhandler;
+package com.roubao.web.response.exceptionhandler;
 
 import com.roubao.common.exception.enums.ExceptionCode;
 import com.roubao.common.exception.model.BaseException;

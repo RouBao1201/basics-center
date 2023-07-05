@@ -1,4 +1,4 @@
-package com.roubao.web.webconfig.exceptionhandler;
+package com.roubao.web.response.exceptionhandler;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
