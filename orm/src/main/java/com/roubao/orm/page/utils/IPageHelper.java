@@ -87,6 +87,33 @@ public final class IPageHelper {
     }
 
     /**
+     * 手动分页
+     * 
+     * @param list 响应数据结果集
+     * @param pageNum 当前页码
+     * @param pageSize 每页数量
+     * @return PageResult
+     * @param <T> 数据泛型
+     */
+    public static <T> PageResult<T> doHandPage(List<T> list, int pageNum, int pageSize) {
+        PageResult<T> pageResult = new PageResult<>();
+        pageResult.setPageNum(pageNum);
+        pageResult.setPageSize(pageSize);
+        if (list == null || list.size() == 0) {
+            pageResult.setList(new ArrayList<>(0));
+            pageResult.setTotal(0L);
+        }
+        else {
+            int from = Math.min((pageNum - 1) * pageSize, list.size());
+            int to = Math.min((pageNum * pageSize), list.size());
+            List<T> pageList = list.subList(from, to);
+            pageResult.setTotal(list.size());
+            pageResult.setList(pageList);
+        }
+        return pageResult;
+    }
+
+    /**
      * 创建分页校验对象
      *
      * @return PageJudge
