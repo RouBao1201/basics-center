@@ -17,13 +17,13 @@ public enum JudgeCodeEnum {
      */
     NO_N("N", "否"),
     /**
-     * 是-0
+     * 是-1
      */
-    YES_0("0", "是"),
+    YES_1("1", "是"),
     /**
-     * 否-1
+     * 否-0
      */
-    NO_1("1", "否");
+    NO_0("0", "否");
 
     private final String code;
 
@@ -37,7 +37,7 @@ public enum JudgeCodeEnum {
     public static boolean validYes(String code) {
         if (JudgeCodeEnum.YES_Y.getCode().equals(code)) {
             return true;
-        } else if (JudgeCodeEnum.YES_0.getCode().equals(code)) {
+        } else if (JudgeCodeEnum.YES_1.getCode().equals(code)) {
             return true;
         } else {
             return false;
@@ -47,7 +47,7 @@ public enum JudgeCodeEnum {
     public static boolean validNo(String code) {
         if (JudgeCodeEnum.NO_N.getCode().equals(code)) {
             return true;
-        } else if (JudgeCodeEnum.NO_1.getCode().equals(code)) {
+        } else if (JudgeCodeEnum.NO_0.getCode().equals(code)) {
             return true;
         } else {
             return false;

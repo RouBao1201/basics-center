@@ -83,6 +83,23 @@ public class IResult {
     }
 
     /**
+     * 转换为成功对象
+     *
+     * @param message 结果信息（重置）
+     * @return IResult
+     */
+    public IResult transOk(String message) {
+        if (this.isNo()) {
+            this.code = DEFAULT_OK_CODE;
+            if (message != null && !message.isEmpty()) {
+                this.message.setLength(0);
+                this.message.append(message);
+            }
+        }
+        return this;
+    }
+
+    /**
      * 转换为失败对象
      *
      * @return IResult
@@ -92,6 +109,23 @@ public class IResult {
             this.code = DEFAULT_NO_CODE;
             this.message.setLength(0);
             this.message.append(DEFAULT_NO_MESSAGE);
+        }
+        return this;
+    }
+
+    /**
+     * 切换状态为失败
+     *
+     * @param message 结果信息（重置）
+     * @return IResult
+     */
+    public IResult transNo(String message) {
+        if (this.isOk()) {
+            this.code = DEFAULT_NO_CODE;
+            if (message != null && !message.isEmpty()) {
+                this.message.setLength(0);
+                this.message.append(message);
+            }
         }
         return this;
     }
@@ -133,6 +167,19 @@ public class IResult {
         this.message.append(message);
     }
 
+    /**
+     * 获取结果信息（字符串）
+     *
+     * @return String
+     */
+    public String getStrMessage() {
+        return String.valueOf(getMessage());
+    }
+
+    private IResult() {
+
+    }
+
     public Integer getCode() {
         return code;
     }
@@ -149,7 +196,8 @@ public class IResult {
         this.message = message;
     }
 
-    private IResult() {
-
+    @Override
+    public String toString() {
+        return "IResult{" + "code=" + code + ", message=" + message + '}';
     }
 }
