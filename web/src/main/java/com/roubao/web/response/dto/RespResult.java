@@ -88,7 +88,7 @@ public class RespResult<T> implements Serializable {
      * @return RespResult
      */
     public static <T> RespResult<T> success(Integer code, String message) {
-        return new RespResult<>(RespCode.SUCCESS_200.getCode(), message, null);
+        return new RespResult<>(code, message, null);
     }
 
     /**
@@ -101,7 +101,7 @@ public class RespResult<T> implements Serializable {
      * @return RespResult
      */
     public static <T> RespResult<T> success(Integer code, String message, T data) {
-        return new RespResult<>(RespCode.SUCCESS_200.getCode(), message, data);
+        return new RespResult<>(code, message, data);
     }
 
     /**

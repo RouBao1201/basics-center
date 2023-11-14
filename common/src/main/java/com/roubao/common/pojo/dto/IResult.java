@@ -74,12 +74,7 @@ public class IResult {
      * @return IResult
      */
     public IResult transOk() {
-        if (this.isNo()) {
-            this.code = DEFAULT_OK_CODE;
-            this.message.setLength(0);
-            this.message.append(DEFAULT_OK_MESSAGE);
-        }
-        return this;
+        return transOk(null);
     }
 
     /**
@@ -105,12 +100,7 @@ public class IResult {
      * @return IResult
      */
     public IResult transNo() {
-        if (this.isOk()) {
-            this.code = DEFAULT_NO_CODE;
-            this.message.setLength(0);
-            this.message.append(DEFAULT_NO_MESSAGE);
-        }
-        return this;
+        return transNo(null);
     }
 
     /**
